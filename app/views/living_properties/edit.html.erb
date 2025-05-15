@@ -1,0 +1,45 @@
+<main class="max-w-4xl mx-auto px-6 py-10">
+   <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
+      <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Editar Vivienda</h2>
+
+      <%= form_with model: @property do |form| %>
+        <div class="grid grid-cols-1 gap-5">
+          <div>
+            <%= form.label :name, 'Nombre', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_field :name, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :bedrooms, 'Habitaciones', class: 'block text-sm font-medium mb-1' %>
+            <%= form.number_field :bedrooms, in: 1..100, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :guest_capacity, 'Cantidad de huespedes', class: 'block text-sm font-medium mb-1' %>
+            <%= form.number_field :guest_capacity, in: 1..100, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :price, 'Precio por noche', class: 'block text-sm font-medium mb-1' %>
+            <%= form.number_field :price, in: 1.0..10000.0, class: 'w-full p-2 rounded border border-gray-300', step: 0.01 %>
+          </div>
+
+          <div>
+            <%= form.label :city, 'Ciudad', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_field :city, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :description, 'Descripción', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_area :description, in: 1..100, class: 'w-full p-2 rounded border border-gray-300', rows: 4 %>
+          </div>
+
+          <%= form.file_field :pictures %>
+
+          <div>
+            <%= form.submit 'Guardar cambios', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-2xl px-6' %>
+          </div>
+        </div>
+      <% end %>
+   </div>
+</main>

@@ -1,0 +1,8 @@
+.form-error-message {
+  color: red;
+  font-size: .85rem;
+}
+
+.form-error-field > input {
+  border-color: red;
+}
