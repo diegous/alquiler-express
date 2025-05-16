@@ -34,7 +34,17 @@
             <%= form.text_area :description, in: 1..100, class: 'w-full p-2 rounded border border-gray-300', rows: 4 %>
           </div>
 
-          <%= form.file_field :pictures %>
+          <div>
+              <p class="block text-sm font-medium mb-1">Imagen actual</p>
+              <% if @property.pictures.any? %>
+                <%= image_tag rails_blob_path(@property.pictures.first, disposition: "attachment"), class: 'w-50 object-contain h-30 m-2' %>
+              <% else %>
+                No hay imagen actual
+              <% end %>
+
+              <%= form.label :pictures, 'Nueva imagen', class: 'block text-sm font-medium mb-1' %>
+              <%= form.file_field :pictures, class: 'text-sm inline-block file:bg-[#144B7F] file:hover:bg-[#3B6FA0] file:text-white file:px-5 file:py-2 file:rounded-full' %>
+          </div>
 
           <div>
             <%= form.submit 'Guardar cambios', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-2xl px-6' %>
