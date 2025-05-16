@@ -1,0 +1,11 @@
+# House
+beach_house_picture:
+  name: pictures
+  record: living_property_beach_house (Property)
+  blob: beach_house_blob
+
+# Appartment
+appartment_near_park_picture:
+  name: pictures
+  record: living_property_near_park (Property)
+  blob: appartment_near_park_blob

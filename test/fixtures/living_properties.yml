@@ -1,0 +1,29 @@
+living_property_beach_house:
+  type: LivingProperty
+  name: Casa en Punta Lara
+  price: 300.0
+  city: Punta Lara
+  bedrooms: 2
+  guest_capacity: 5
+  description: |
+    Cómoda casa con jacuzzi, aire acondicionado y TV inteligente.
+
+    Somos un rincón tranquilo en el centro de la naturaleza y por esta razón no permitimos ruidos fuertes ni raquetas en nuestro espacio.
+
+    Suena dentro de los alojamientos solo en un volumen bajo que no moleste a otros huéspedes.
+
+    Silencio después de las 10 pm
+
+    Energía solar fotovoltaica: desde mayo de 2021, formamos parte del bed and breakfast que producen su propia energía limpia y sostenible en Praia do Rosa.
+
+living_property_near_park:
+  type: LivingProperty
+  name: Departamento en Plaza Paso
+  price: 275.42
+  city: La Plata
+  bedrooms: 1
+  guest_capacity: 2
+  description: |
+    Relájese en este espacio tranquilo en una ubicación céntrica. El apartamento se encuentra cerca de la parada de Ponte Lungo del metro A. Un paseo de 10 minutos y estarás en San Giovanni. Cerca de todos los servicios: metro, autobús, tren desde/hacia el aeropuerto, supermercados, restaurantes.
+
+    Acogedor y espacioso apartamento, listo para daros la bienvenida a vuestra estancia. Dos amplias habitaciones (dormitorio y sala de estar con sofá cama) pueden alojar cómodamente hasta 4 personas. La amplia entrada y el pasillo permiten acceder a una espaciosa cocina y al baño, donde encontrarás todos los electrodomésticos necesarios.
