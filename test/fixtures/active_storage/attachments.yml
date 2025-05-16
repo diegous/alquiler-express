@@ -9,3 +9,23 @@ appartment_near_park_picture:
   name: pictures
   record: living_property_near_park (Property)
   blob: appartment_near_park_blob
+
+# Garages
+covered_garage_picture:
+  name: pictures
+  record: (Property)
+  blob: covered_garage_blob
+non_roofed_garage_picture:
+  name: pictures
+  record: (Property)
+  blob: non_roofed_garage_blob
+
+# Commercial space
+commercial_space_1_picture:
+  name: pictures
+  record: (Property)
+  blob: commercial_space_1_blob
+commercial_space_2_picture:
+  name: pictures
+  record: (Property)
+  blob: commercial_space_2_blob
