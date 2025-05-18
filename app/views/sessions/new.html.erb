@@ -1,11 +1,27 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<main class="max-w-4xl mx-auto px-6 py-10">
+  <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
+    <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Iniciar Sesión</h2>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+    <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
-<%= link_to "Forgot password?", new_password_path %>
+    <%= form_with url: session_path do |form| %>
+      <div class="grid grid-cols-1 gap-5">
+
+        <div>
+          <%= form.label :email_address, 'Email', class: 'block text-sm font-medium mb-1' %>
+          <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Email", value: params[:email_address], class: 'w-full p-2 rounded border border-gray-300' %>
+        </div>
+
+        <div>
+          <%= form.label :password, 'Contraseña', class: 'block text-sm font-medium mb-1' %>
+          <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Contraseña", maxlength: 72, class: 'w-full p-2 rounded border border-gray-300' %>
+        </div>
+
+        <%= form.submit "Iniciar Sesión", class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-2xl px-6' %>
+      </div>
+    <% end %>
+
+    <%= link_to "¿Olvidó su contraseña?", new_password_path %>
+  </div>
+</main>
