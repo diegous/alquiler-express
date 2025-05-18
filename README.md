@@ -1,24 +1,34 @@
-# README
+# Alquiler Express
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requerimientos
 
-Things you may want to cover:
+- Ruby 3.4.3
 
-* Ruby version
+## Instalación
 
-* System dependencies
+1. Clonar el repo localmente
+2. En la carpeta del repo ejecutar: `gem install bundler`
+3. Ejecutar `bundle install`
 
-* Configuration
+## Base de datos
 
-* Database creation
+La hay seeds en la carpeta `test/fixtures` para arrancar con algunas cosas en la base de datos.
 
-* Database initialization
+Algunos comandos para manejar la base de datos:
+- Crear: `rails db:create`
+- Dropear: `rails db:drop`
+- Cargar las tablas: `db:schema:load`
+- Cargar los seeds: `db:fixtures:load`
 
-* How to run the test suite
+Se pueden encadenar esos comandos. Por ejemplo, para borrar la base de datos y crearla de nuevo con los seeds:
+```bash
+rails db:drop db:create db:schema:load db:fixtures:load
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Servidor
 
-* Deployment instructions
+Para levantar el servidor: `rails server` o `rails s`
 
-* ...
+Una vez levantado el servidor se puede acceder mediante un browser a la página en `localhost:3000`
+
+Para abrir una consola del servidor: `rails console` o `rails c`
