@@ -19,12 +19,4 @@ class SessionsController < ApplicationController
     terminate_session
     redirect_to new_session_path
   end
-
-  private
-
-  def redirect_if_logged_in
-    if Current.user
-      redirect_to root_path
-    end
-  end
 end
