@@ -1,4 +1,4 @@
-class AddPriceToProperties < ActiveRecord::Migration[8.0]
+class AddPriceToProperties < ActiveRecord::Migration[7.1]
   def change
     add_column :properties, :price, :float
   end

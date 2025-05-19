@@ -1,4 +1,4 @@
-class CreateProperty < ActiveRecord::Migration[8.0]
+class CreateProperty < ActiveRecord::Migration[7.1]
   def change
     create_table :properties do |t|
       t.integer :bedrooms
