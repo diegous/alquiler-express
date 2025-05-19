@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   root "living_properties#index"
 
   resources :living_properties
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
