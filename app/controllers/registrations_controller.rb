@@ -10,7 +10,6 @@ class RegistrationsController < ApplicationController
     @customer = Customer.new
 
     if @customer.update(customer_params)
-      debugger
       redirect_to root_path
     else
       render :new
