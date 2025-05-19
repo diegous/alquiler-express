@@ -10,6 +10,7 @@ class RegistrationsController < ApplicationController
     @customer = Customer.new
 
     if @customer.update(customer_params)
+      CustomerMailer.with(customer: @customer).welcome_email.deliver_now
       redirect_to root_path
     else
       render :new
