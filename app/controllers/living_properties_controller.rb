@@ -1,5 +1,6 @@
 class LivingPropertiesController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
+  require_admin! only: %i[ edit update ]
 
   def index
     @properties = LivingProperty.all
