@@ -1,6 +1,6 @@
 class LivingPropertiesController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
-  require_admin! only: %i[ edit update ]
+  require_admin! only: %i[ new create edit update ]
 
   def index
     @properties = LivingProperty.all
@@ -8,6 +8,20 @@ class LivingPropertiesController < ApplicationController
 
   def show
     @property = LivingProperty.find(params[:id])
+  end
+
+  def new
+    @property = LivingProperty.new
+  end
+
+  def create
+    @property = LivingProperty.new(living_property_params)
+
+    if @property.save
+      redirect_to living_property_path(@property)
+    else
+      render :edit
+    end
   end
 
   def edit
