@@ -42,6 +42,15 @@ class LivingPropertiesController < ApplicationController
 
   def living_property_params
     params.require(:living_property)
-          .permit(:name, :bedrooms, :guest_capacity, :price, :city, :pictures, :description)
+          .permit(
+            :name,
+            :living_property_type,
+            :bedrooms,
+            :guest_capacity,
+            :price,
+            :city,
+            :pictures,
+            :description
+          )
   end
 end

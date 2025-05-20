@@ -6,6 +6,17 @@
   </div>
 
   <div>
+    <%= form.label :living_property_type, 'Tipo', class: 'block text-sm font-medium mb-1' %>
+    <%
+      select_options = LivingProperty
+        .living_property_types
+        .keys
+        .map { |type| [enum_t(type, key: :living_property).capitalize, type] }
+    %>
+    <%= form.select(:living_property_type, select_options, {}, class: 'w-full p-2 rounded border border-gray-300') %>
+  </div>
+
+  <div>
     <%= form.label :bedrooms, 'Habitaciones', class: 'block text-sm font-medium mb-1' %>
     <%= form.number_field :bedrooms, in: 1..100, class: 'w-full p-2 rounded border border-gray-300' %>
   </div>

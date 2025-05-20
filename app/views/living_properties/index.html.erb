@@ -24,10 +24,15 @@
       <div class="p-4">
         <h2 class="text-xl font-semibold text-[#144B7F]"><%= property.name %></h2>
         <p class="text-sm text-gray-600">
-          <%= property.bedrooms %> <%= property.bedrooms > 1 ? 'habitaciones' : 'habitación' %>
+          <%= enum_t(property.living_property_type, key: :living_property).capitalize %>
+          de
+          <%= property.bedrooms %>
+          <%= t('misc.bedrooms', count: property.bedrooms) %>
         </p>
         <p class="text-sm text-gray-600">
-          Lugar para <%= property.guest_capacity %> <%= 'persona'.pluralize(property.guest_capacity) %>
+          Lugar para
+          <%= property.guest_capacity %>
+          <%= 'persona'.pluralize(property.guest_capacity) %>
         </p>
         <p class="mt-2 text-[#FF6C1E] font-bold">
           $<%= property.price %> por noche
