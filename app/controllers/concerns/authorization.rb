@@ -14,6 +14,6 @@ module Authorization
   private
 
   def render_forbidden
-    render plain: '403 Forbidden', status: 403
+    render plain: "403 Forbidden", status: 403
   end
 end

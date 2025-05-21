@@ -6,7 +6,7 @@ class LivingPropertiesController < ApplicationController
     @properties = LivingProperty.all
 
     if params[:city].present?
-      @properties = @properties.where('city like ?', "%#{params[:city].strip}%")
+      @properties = @properties.where("city like ?", "%#{params[:city].strip}%")
     end
 
     if params[:bedrooms].present?

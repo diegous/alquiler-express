@@ -9,7 +9,7 @@ class Property < ApplicationRecord
 
   def must_have_a_picture
     if pictures.blank?
-      errors.add(:pictures, 'debe tener una imagen')
+      errors.add(:pictures, "debe tener una imagen")
     end
   end
 end
