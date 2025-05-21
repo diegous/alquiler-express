@@ -3,6 +3,14 @@ class EmployeesController < ApplicationController
 
   def index
     @employees = Employee.all
+
+    if params[:query].present?
+      sql_string = "first_name LIKE :query
+                    OR last_name LIKE :query
+                    OR email_address LIKE :query"
+
+      @employees = @employees.where(sql_string, query: "%#{params[:query]}%")
+    end
   end
 
   def new
