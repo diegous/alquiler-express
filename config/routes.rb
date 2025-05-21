@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   root "living_properties#index"
 
   resources :living_properties
-  resources :employees
+  resources :employees do
+    member { patch :enable }
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

@@ -41,6 +41,18 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def destroy
+    employee = Employee.find(params[:id])
+    employee.update!(enabled: false)
+    redirect_to employees_path
+  end
+
+  def enable
+    employee = Employee.find(params[:id])
+    employee.update!(enabled: true)
+    redirect_to employees_path
+  end
+
   private
 
   def employee_params
