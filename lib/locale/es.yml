@@ -4,6 +4,9 @@ es:
       living_property:
         house: casa
         apartment: departamento
+  errors:
+    messages:
+      blank: no puede estar en blanco
   misc:
     bedrooms:
       zero: sin habitaciones
