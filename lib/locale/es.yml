@@ -7,6 +7,11 @@ es:
   errors:
     messages:
       blank: no puede estar en blanco
+      confirmation: "no coincide con %{attribute}"
+      greater_than: "debe ser mayor a %{count}"
+      less_than: "debe ser menor a %{count}"
+      not_a_number: no es un número
+      taken: ya está en uso
   misc:
     bedrooms:
       zero: sin habitaciones
