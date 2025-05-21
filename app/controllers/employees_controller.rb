@@ -1,6 +1,10 @@
 class EmployeesController < ApplicationController
   require_admin!
 
+  def index
+    @employees = Employee.all
+  end
+
   def new
     @employee = Employee.new
   end
