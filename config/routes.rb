@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     member { patch :enable }
   end
 
+  resource :two_fa, only: %i[new create]
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

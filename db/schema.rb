@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_21_191323) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_22_182844) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -90,6 +90,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_21_191323) do
     t.datetime "updated_at", null: false
     t.string "type"
     t.boolean "enabled", default: true
+    t.string "two_fa_token"
+    t.datetime "two_fa_timestamp"
     t.index ["dni"], name: "index_users_on_dni", unique: true
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end

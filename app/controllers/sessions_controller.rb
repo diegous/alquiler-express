@@ -10,14 +10,22 @@ class SessionsController < ApplicationController
     user = User.authenticate_by(params.permit(:email_address, :password))
 
     unless user
-      redirect_to new_session_path, alert: "Try another email address or password."
+      return redirect_to new_session_path, alert: "Mail o contraseña incorrectos"
     end
 
-    if user.enabled?
-      start_new_session_for user
-      redirect_to after_authentication_url
+    if user.disabled?
+      return redirect_to new_session_path, alert: "Su usuario está desactivado"
+    end
+
+    start_new_session_for user
+
+    if user.admin?
+      token = rand(1000000).to_s
+      user.update(two_fa_token: token, two_fa_timestamp: Time.current)
+      AdminMailer.with(admin: @user).two_fa_email.deliver_now
+      redirect_to new_two_fa_path
     else
-      redirect_to new_session_path, alert: "Su usuario está deshabilitado"
+      redirect_to after_authentication_url
     end
   end
 

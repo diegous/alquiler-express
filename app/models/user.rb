@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def customer?
     false
   end
+
+  def disabled?
+    !enabled?
+  end
 end
