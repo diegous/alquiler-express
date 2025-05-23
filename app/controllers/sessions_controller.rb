@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     if user.admin?
       token = rand(1000000).to_s
       user.update(two_fa_token: token, two_fa_timestamp: Time.current)
-      AdminMailer.with(admin: @user).two_fa_email.deliver_now
+      AdminMailer.with(admin: user).two_fa_email.deliver_now
       redirect_to new_two_fa_path
     else
       redirect_to after_authentication_url
