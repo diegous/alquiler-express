@@ -1,18 +1,40 @@
-<section class="px-6 py-8 max-w-4xl mx-auto">
-  <div class="flex items-center gap-4">
-    <input class="flex h-10 w-full bg-white text-base ring-offset-background text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 flex-grow border border-gray-300 rounded-2xl px-4 py-2 shadow-sm"
-      placeholder="Buscar...">
+<section class="px-6 py-6 max-w-6xl mx-auto">
+  <%= form_with url: living_properties_path, method: :get do |form| %>
+    <div class="flex flex-row gap-2 bg-white rounded-2xl shadow-md p-4 items-center">
+      <%= form.search_field :city, placeholder: 'Ciudad', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm flex-1 px-4 border border-gray-300 rounded-xl', value: params[:city] %>
+      <%= form.number_field :bedrooms, placeholder: 'Habitaciones', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:bedrooms] %>
+      <%= form.number_field :guest_capacity, placeholder: 'Huéspedes', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:guest_capacity] %>
 
-    <button class="inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors shadow h-9 py-2 bg-[#FF6C1E] text-white rounded-2xl px-6 hover:bg-orange-600">
-      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="mr-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
-        </path>
-      </svg>
-      Buscar
-    </button>
-  </div>
+      <%
+        translated_options = LivingProperty
+          .living_property_types
+          .keys
+          .map { |type| [enum_t(type, key: :living_property).capitalize, type] }
+        select_options = [['Todo', nil]] + translated_options
+      %>
+      <%= form.select(
+        :living_property_type,
+        options_for_select(select_options, selected: params[:living_property_type]),
+        {},
+        class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl'
+      )%>
+
+      <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600">
+        <%= render 'svgs/lupa' %>
+        Search
+      </button>
+    </div>
+  <% end %>
 </section>
+
+<% if Current.user&.admin? %>
+  <div class="max-w-6xl mx-auto px-6 pb-6">
+    <%= link_to new_living_property_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" do %>
+      <%= render 'svgs/plus' %>
+      Nueva vivienda
+    <% end %>
+  </div>
+<% end %>
 
 <main class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 pb-12 max-w-6xl mx-auto">
   <% @properties.each do |property| %>
@@ -24,10 +46,15 @@
       <div class="p-4">
         <h2 class="text-xl font-semibold text-[#144B7F]"><%= property.name %></h2>
         <p class="text-sm text-gray-600">
-          <%= property.bedrooms %> <%= property.bedrooms > 1 ? 'habitaciones' : 'habitación' %>
+          <%= enum_t(property.living_property_type, key: :living_property).capitalize %>
+          de
+          <%= property.bedrooms %>
+          <%= t('misc.bedrooms', count: property.bedrooms) %>
         </p>
         <p class="text-sm text-gray-600">
-          Lugar para <%= property.guest_capacity %> <%= 'persona'.pluralize(property.guest_capacity) %>
+          Lugar para
+          <%= property.guest_capacity %>
+          <%= 'persona'.pluralize(property.guest_capacity) %>
         </p>
         <p class="mt-2 text-[#FF6C1E] font-bold">
           $<%= property.price %> por noche

@@ -1,0 +1,19 @@
+<main class="max-w-4xl mx-auto px-6 py-10">
+  <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
+    <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Autenticación de dos factores</h2>
+
+    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+    <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+    <%= form_with url: two_fa_path do |form| %>
+      <div class="grid grid-cols-1 gap-5">
+        <div>
+          <%= form.label :two_fa_token, 'Token', class: 'block text-sm font-medium mb-1' %>
+          <%= form.number_field :two_fa_token, required: true, autofocus: true, placeholder: "Ingrese el código que recibó en su mail", class: 'w-full p-2 rounded border border-gray-300' %>
+        </div>
+
+        <%= form.submit "Enviar", class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-2xl px-6' %>
+      </div>
+    <% end %>
+  </div>
+</main>

@@ -6,9 +6,9 @@
       <h2 class="text-3xl font-bold text-[#144B7F] mb-2"><%= @property.name %></h2>
       <p class="text-[#FF6C1E] font-semibold text-xl mb-4">$<%= @property.price %> por noche</p>
       <ul class="flex flex-wrap gap-4 text-sm text-gray-700 mb-6">
+        <li class="bg-[#FFD4BA] text-[#333] px-3 py-1 rounded-full"><%= enum_t(@property.living_property_type, key: :living_property).capitalize %></li>
         <li class="bg-[#FFD4BA] text-[#333] px-3 py-1 rounded-full"><%= @property.bedrooms %> habitaciones</li>
         <li class="bg-[#FFD4BA] text-[#333] px-3 py-1 rounded-full">Para <%= @property.guest_capacity %> personas</li>
-        <li class="bg-[#FFD4BA] text-[#333] px-3 py-1 rounded-full">75 m²</li>
       </ul>
       <p class="text-gray-800 leading-relaxed"><%= @property.description %></p>
     </div>

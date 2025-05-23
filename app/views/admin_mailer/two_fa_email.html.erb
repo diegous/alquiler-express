@@ -1,0 +1,7 @@
+<h1>Segundo factor de autenticación</h1>
+<p>
+  Su token es: <strong><%= @admin.two_fa_token %></strong>
+</p>
+<p>
+  Para completar el inicio de sesión dírigase a: <%= link_to 'login', new_two_fa_url %>.
+</p>

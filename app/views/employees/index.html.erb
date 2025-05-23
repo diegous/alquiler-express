@@ -1,0 +1,73 @@
+<section class="px-6 py-6 max-w-6xl mx-auto">
+  <%= form_with url: employees_path, method: :get do |form| %>
+    <div class="flex flex-row gap-2 bg-white rounded-2xl shadow-md p-4 items-center">
+      <%= form.search_field :query, placeholder: 'Buscar por email o nombre', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm flex-1 px-4 border border-gray-300 rounded-xl', value: params[:query] %>
+
+      <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600">
+        <%= render 'svgs/lupa' %>
+        Buscar
+      </button>
+    </div>
+  <% end %>
+</section>
+
+<div class="max-w-6xl mx-auto px-6 pb-6">
+  <%= link_to new_employee_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" do %>
+    <%= render 'svgs/plus' %>
+    Nuevo empleado
+  <% end %>
+</div>
+
+<main class="px-6 pb-12 max-w-6xl mx-auto">
+  <div class="overflow-x-auto bg-white rounded-2xl shadow">
+    <table class="min-w-full text-sm text-left">
+      <thead class="bg-[#144B7F] text-white">
+        <tr>
+          <th class="px-6 py-4">Email</th>
+          <th class="px-6 py-4">Apellido</th>
+          <th class="px-6 py-4">Nombre</th>
+          <th class="px-6 py-4">DNI</th>
+          <th class="px-6 py-4">Teléfono</th>
+          <th class="px-6 py-4"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @employees.each do |employee| %>
+          <%
+            row_background_color = if employee.enabled?
+              "hover:bg-gray-100"
+            else
+              "bg-orange-100 hover:bg-orange-200"
+            end
+          %>
+          <tr class="border-t <%= row_background_color %>">
+            <td class="px-6 py-4"><%= employee.email_address %></td>
+            <td class="px-6 py-4"><%= employee.last_name %></td>
+            <td class="px-6 py-4"><%= employee.first_name %></td>
+            <td class="px-6 py-4"><%= employee.dni %></td>
+            <td class="px-6 py-4"><%= employee.phone %></td>
+            <td class="px-6 py-4 flex gap-2">
+              <%= link_to edit_employee_path(employee), class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-blue-500 text-white hover:bg-blue-600" do %>
+                <%= render 'svgs/edit' %>
+                Editar
+              <% end %>
+
+              <% if employee.enabled? %>
+                <%= button_to employee_path(employee), method: :delete, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-red-500 text-white hover:bg-red-600" do %>
+                  <%= render 'svgs/trashcan' %>
+                  Desactivar
+                <% end %>
+              <% else %>
+                <%= button_to enable_employee_path(employee), method: :patch, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-green-600 text-white hover:bg-green-700" do %>
+                  <%= render 'svgs/trashcan' %>
+                  Activar
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>

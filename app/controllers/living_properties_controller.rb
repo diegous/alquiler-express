@@ -4,6 +4,22 @@ class LivingPropertiesController < ApplicationController
 
   def index
     @properties = LivingProperty.all
+
+    if params[:city].present?
+      @properties = @properties.where("city like ?", "%#{params[:city].strip}%")
+    end
+
+    if params[:bedrooms].present?
+      @properties = @properties.where(bedrooms: params[:bedrooms])
+    end
+
+    if params[:guest_capacity].present?
+      @properties = @properties.where(guest_capacity: params[:guest_capacity])
+    end
+
+    if params[:living_property_type].present?
+      @properties = @properties.where(living_property_type: params[:living_property_type])
+    end
   end
 
   def show
@@ -42,6 +58,15 @@ class LivingPropertiesController < ApplicationController
 
   def living_property_params
     params.require(:living_property)
-          .permit(:name, :bedrooms, :guest_capacity, :price, :city, :pictures, :description)
+          .permit(
+            :name,
+            :living_property_type,
+            :bedrooms,
+            :guest_capacity,
+            :price,
+            :city,
+            :pictures,
+            :description
+          )
   end
 end
