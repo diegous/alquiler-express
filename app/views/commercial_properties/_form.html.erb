@@ -16,6 +16,17 @@
   </div>
 
   <div>
+    <%= form.label :width, 'Ancho', class: 'block text-sm font-medium mb-1' %>
+    <%= form.number_field :width, in: 1.0..100.0, class: 'w-full p-2 rounded border border-gray-300' %>
+  </div>
+
+  <div>
+    <%= form.label :length, 'Largo', class: 'block text-sm font-medium mb-1' %>
+    <%= form.number_field :length, in: 1.0..100.0, class: 'w-full p-2 rounded border border-gray-300' %>
+  </div>
+
+
+  <div>
     <%= form.label :description, 'Descripción', class: 'block text-sm font-medium mb-1' %>
     <%= form.text_area :description, in: 1..100, class: 'w-full p-2 rounded border border-gray-300', rows: 4 %>
   </div>
@@ -29,7 +40,7 @@
     <% end %>
 
     <%= form.label :pictures, 'Nueva imagen', class: 'block text-sm font-medium mb-1' %>
-    <%= form.file_field :pictures, class: 'text-sm inline-block file:bg-[#144B7F] file:hover:bg-[#3B6FA0] file:text-white file:px-5 file:py-2 file:rounded-full' %>
+    <%= form.file_field :pictures, multiple: true , class: 'text-sm inline-block file:bg-[#144B7F] file:hover:bg-[#3B6FA0] file:text-white file:px-5 file:py-2 file:rounded-full' %>
   </div>
 
   <div>

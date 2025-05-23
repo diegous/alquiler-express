@@ -20,6 +20,8 @@ class CommercialPropertiesController < ApplicationController
     if @property.save
       redirect_to commercial_property_path(@property)
     else
+      puts "Errores:"
+      puts @property.errors.full_messages.join(", ")
       render :edit
     end
   end
@@ -42,6 +44,6 @@ class CommercialPropertiesController < ApplicationController
 
   def commercial_property_params
     params.require(:commercial_property)
-          .permit(:name, :price, :city, :pictures, :description)
+          .permit(:name, :price, :city, :length, :width, :description, pictures: [])
   end
 end
