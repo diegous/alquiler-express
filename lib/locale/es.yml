@@ -1,4 +1,10 @@
 es:
+  date:
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    month_names: [none, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    formats:
+      long: "%F"
+      day: "%A %e de %B"
   activerecord:
     enums:
       living_property:
@@ -9,6 +15,7 @@ es:
       blank: no puede estar en blanco
       confirmation: "no coincide con %{attribute}"
       greater_than: "debe ser mayor a %{count}"
+      record_invalid: inválido
       less_than: "debe ser menor a %{count}"
       not_a_number: no es un número
       taken: ya está en uso

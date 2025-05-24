@@ -1,4 +1,6 @@
 class Property < ApplicationRecord
+  has_many :rentals
+
   validates :name, :city, :price, :description, presence: true
   validates :price, numericality: { greater_than: 0 }
 

@@ -1,6 +1,10 @@
 module Authorization
   extend ActiveSupport::Concern
 
+  included do
+    helper_method :render_forbidden
+  end
+
   class_methods do
     def require_admin!(**options)
       before_action :authorize_admin, **options
