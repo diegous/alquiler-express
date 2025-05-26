@@ -4,26 +4,26 @@
     <div class="p-6 space-y-8">
       <div class="space-y-2">
         <h2 class="text-3xl font-bold text-[#144B7F] mb-5">
-          Detalles de reserva #<%= rental.id %>
+          Detalles de reserva #<%= @rental.id %>
         </h2>
         <p class="font-medium text-[#333]">
-          <%= link_to rental.property.name, living_property_path(rental.property) %>
+          <%= link_to @rental.property.name, living_property_path(@rental.property) %>
         </p>
         <p class="text-[#666]">
           Checkin:
           <span class="font-medium text-[#333]">
-            <%=l rental.start.to_date, format: :day %>
+            <%=l @rental.start.to_date, format: :day %>
           </span>
         </p>
 
         <p class="text-[#666]">
           Checkout:
           <span class="font-medium text-[#333]">
-            <%=l rental.end.to_date, format: :day %>
+            <%=l @rental.end.to_date, format: :day %>
           </span>
         </p>
 
-        <p class="text-lg font-semibold text-[#FF6C1E]">Total: <%= number_to_currency rental.total_cost %></p>
+        <p class="text-lg font-semibold text-[#FF6C1E]">Total: <%= number_to_currency @rental.total_cost %></p>
       </div>
 
       <div>
@@ -48,8 +48,8 @@
         </ul>
       </div>
 
-      <% if Current.user == rental.owner %>
-        <%= link_to "Agregar huésped", new_rental_guest_path(rental), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
+      <% if Current.user == @rental.owner %>
+        <%= link_to "Agregar huésped", new_rental_guest_path(@rental), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
       <% end %>
     </div>
   </div>
