@@ -1,4 +1,4 @@
-class CreateRental < ActiveRecord::Migration[8.0]
+class CreateRental < ActiveRecord::Migration[7.2]
   def change
     create_table :rentals do |t|
       t.datetime :start
