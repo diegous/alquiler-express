@@ -31,7 +31,9 @@
               <%= rental.users.count %>
             </span>
           </p>
-          <p class="text-sm font-semibold text-[#FF6C1E]">Total: $<%= rental.total_cost %></p>
+          <p class="text-sm font-semibold text-[#FF6C1E]">
+            Total: <%= number_to_currency rental.total_cost %>
+          </p>
         </div>
         <%= link_to "Ver detalles", rental_guests_path(rental), class: 'text-sm font-medium transition-colors shadow bg-[#144B7F] text-white hover:bg-[#3B6FA0] rounded-xl px-6 py-2' %>
         <button

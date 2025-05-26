@@ -57,7 +57,7 @@
           <%= 'persona'.pluralize(property.guest_capacity) %>
         </p>
         <p class="mt-2 text-[#FF6C1E] font-bold">
-          $<%= property.price %> por noche
+          <%= number_to_currency property.price %> por noche
         </p>
       </div>
     </div>
