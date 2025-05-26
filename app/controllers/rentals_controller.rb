@@ -1,5 +1,9 @@
 class RentalsController < ApplicationController
-  before_action :set_property
+  before_action :set_property, only: %i[new create]
+
+  def index
+    @rentals = Current.user.rentals
+  end
 
   def new
     @rental = Rental.new

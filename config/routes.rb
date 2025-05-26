@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :rentals, only: %i[index new create]
   end
 
-  resources :rental, only: [] do
+  resources :rentals, only: %i[index] do
     resources :guests, only: %i[index new create destroy]
   end
   resources :employees do

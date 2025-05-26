@@ -1,0 +1,44 @@
+<main class="max-w-5xl mx-auto px-6 py-10 space-y-6">
+
+  <% @rentals.each do |rental|%>
+    <div class="rounded-2xl shadow bg-white overflow-hidden">
+      <div class="p-4 flex items-center gap-6">
+        <%= image_tag rails_blob_path(rental.property.pictures.first, disposition: "attachment"), class: 'w-24 h-24 object-cover rounded-xl' %>
+
+        <div class="flex-1 space-y-1">
+          <h2 class="text-xl font-semibold text-[#144B7F]"><%= rental.property.name %></h2>
+          <p class="text-sm text-[#666]">
+            Checkin:
+            <span class="text-black font-medium">
+              <%=l rental.start.to_date %>
+            </span>
+          </p>
+          <p class="text-sm text-[#666]">
+            Checkout:
+            <span class="text-black font-medium">
+              <%=l rental.end.to_date %>
+            </span>
+          </p>
+          <p class="text-sm text-[#666]">
+            Estado:
+            <span class="text-black font-medium">
+              <%= enum_t(rental.status, key: :rental).humanize %>
+            </span>
+          </p>
+          <p class="text-sm text-[#666]">
+            Huéspedes:
+            <span class="text-black font-medium">
+              <%= rental.users.count %>
+            </span>
+          </p>
+          <p class="text-sm font-semibold text-[#FF6C1E]">Total: $<%= rental.total_cost %></p>
+        </div>
+        <%= link_to "Ver detalles", rental_guests_path(rental), class: 'text-sm font-medium transition-colors shadow bg-[#144B7F] text-white hover:bg-[#3B6FA0] rounded-xl px-6 py-2' %>
+        <button
+          disabled="disabled"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-9 bg-red-500 text-white hover:bg-red-600 rounded-xl px-4 py-2">Cancel</button>
+      </div>
+    </div>
+  <% end %>
+
+</main>
