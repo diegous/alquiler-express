@@ -16,8 +16,15 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "living_properties#index"
 
-  resources :living_properties
+
   resources :commercial_properties
+  resources :living_properties do
+    resources :rentals, only: %i[index new create]
+  end
+
+  resources :rental, only: [] do
+    resources :guests, only: %i[index new create destroy]
+  end
   resources :employees do
     member { patch :enable }
   end
