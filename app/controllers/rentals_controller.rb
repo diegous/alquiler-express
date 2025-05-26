@@ -2,11 +2,11 @@ class RentalsController < ApplicationController
   before_action :set_property, only: %i[new create]
 
   def index
-    @rentals = Current.user.rentals
+    @rentals = Current.user.owned_rentals
   end
 
   def show
-    @rental = Current.user.rentals.find(params[:id])
+    @rental = Current.user.owned_rentals.find(params[:id])
   end
 
   def new
