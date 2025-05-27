@@ -3,6 +3,7 @@
   font-size: .85rem;
 }
 
+.form-error-field > textarea,
 .form-error-field > input {
   border-color: red;
 }
