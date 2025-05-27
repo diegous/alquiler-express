@@ -23,12 +23,11 @@ Rails.application.routes.draw do
   resources :rentals, only: %i[index show] do
     resource :guest, only: %i[new create destroy]
   end
-  resources :employees do
-    member { patch :enable }
-  end
 
   namespace :admin do
-    resources :rentals, only: %i[index show]
+    resources :employees do
+      member { patch :enable }
+    end
   end
 
   resource :two_fa, only: %i[new create]

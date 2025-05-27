@@ -1,4 +1,4 @@
-class EmployeesController < ApplicationController
+class Admin::EmployeesController < ApplicationController
   require_admin!
 
   def index
@@ -21,7 +21,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
 
     if @employee.update(employee_params)
-      redirect_to employees_path
+      redirect_to admin_employees_path
     else
       render :new
     end
@@ -35,7 +35,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 
     if @employee.update(employee_params)
-      redirect_to employees_path
+      redirect_to admin_employees_path
     else
       render :edit
     end
@@ -44,13 +44,13 @@ class EmployeesController < ApplicationController
   def destroy
     employee = Employee.find(params[:id])
     employee.update!(enabled: false)
-    redirect_to employees_path
+    redirect_to admin_employees_path
   end
 
   def enable
     employee = Employee.find(params[:id])
     employee.update!(enabled: true)
-    redirect_to employees_path
+    redirect_to admin_employees_path
   end
 
   private
