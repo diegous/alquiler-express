@@ -37,6 +37,7 @@
           <% if Current.user.present? %>
             <% if Current.user&.admin? %>
               <%= link_to 'Empleados', admin_employees_path, class: 'text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' %>
+              <%= link_to 'Viviendas', admin_living_properties_path, class: 'text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' %>
             <% elsif Current.user.employee? %>
               <%= link_to 'Reservas', admin_rentals_path, class: 'text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' %>
             <% elsif Current.user.customer? %>

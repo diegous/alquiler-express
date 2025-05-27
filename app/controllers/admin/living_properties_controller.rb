@@ -1,6 +1,10 @@
 class Admin::LivingPropertiesController < ApplicationController
   require_admin!
 
+  def index
+    @properties = LivingProperty.all
+  end
+
   def new
     @property = LivingProperty.new
   end
