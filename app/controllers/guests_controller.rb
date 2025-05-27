@@ -2,10 +2,6 @@ class GuestsController < ApplicationController
   helper_method :rental
   before_action :authorize_owner, only: %i[new create]
 
-  def index
-    @guests = rental.users
-  end
-
   def new
     @guest = rental.users.new(type: Guest)
   end

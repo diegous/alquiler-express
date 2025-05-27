@@ -1,4 +1,4 @@
-class RemoveNonNullFromUserPasswordDigest < ActiveRecord::Migration[8.0]
+class RemoveNonNullFromUserPasswordDigest < ActiveRecord::Migration[7.2]
   def change
     change_column_null(:users, :password_digest, true)
   end

@@ -1,4 +1,4 @@
-class AddTypeToProperties < ActiveRecord::Migration[8.0]
+class AddTypeToProperties < ActiveRecord::Migration[7.2]
   def change
     add_column :properties, :type, :string
   end

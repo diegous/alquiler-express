@@ -3,6 +3,7 @@ es:
     day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
     month_names: [none, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     formats:
+      default: "%d/%m/%Y"
       long: "%F"
       day: "%A %e de %B"
   activerecord:
@@ -10,6 +11,14 @@ es:
       living_property:
         house: casa
         apartment: departamento
+      rental:
+        draft: borrador
+        requested: solicitada
+        accepted: aceptada
+        paid: pagada
+        started: en curso
+        finished: finalizada
+        canceled: cancelada
   errors:
     messages:
       blank: no puede estar en blanco
@@ -24,3 +33,13 @@ es:
       zero: sin habitaciones
       one: habitación
       other: habitaciones
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u%n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"

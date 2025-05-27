@@ -1,38 +1,8 @@
-<section class="px-6 py-6 max-w-6xl mx-auto">
-  <%= form_with url: living_properties_path, method: :get do |form| %>
-    <div class="flex flex-row gap-2 bg-white rounded-2xl shadow-md p-4 items-center">
-      <%= form.search_field :city, placeholder: 'Ciudad', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm flex-1 px-4 border border-gray-300 rounded-xl', value: params[:city] %>
-      <%= form.number_field :bedrooms, placeholder: 'Habitaciones', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:bedrooms] %>
-      <%= form.number_field :guest_capacity, placeholder: 'Huéspedes', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:guest_capacity] %>
+<%= render 'searchbar', url: living_properties_path %>
 
-      <%
-        translated_options = LivingProperty
-          .living_property_types
-          .keys
-          .map { |type| [enum_t(type, key: :living_property).capitalize, type] }
-        select_options = [['Todo', nil]] + translated_options
-      %>
-      <%= form.select(
-        :living_property_type,
-        options_for_select(select_options, selected: params[:living_property_type]),
-        {},
-        class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl'
-      )%>
-
-      <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600">
-        <%= render 'svgs/lupa' %>
-        Search
-      </button>
-    </div>
-  <% end %>
-</section>
-
-<% if Current.user&.admin? %>
-  <div class="max-w-6xl mx-auto px-6 pb-6">
-    <%= link_to new_living_property_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" do %>
-      <%= render 'svgs/plus' %>
-      Nueva vivienda
-    <% end %>
+<% if @properties.empty? %>
+  <div class="w-full text-center">
+    No se encontraron viviendas
   </div>
 <% end %>
 
@@ -57,7 +27,7 @@
           <%= 'persona'.pluralize(property.guest_capacity) %>
         </p>
         <p class="mt-2 text-[#FF6C1E] font-bold">
-          $<%= property.price %> por noche
+          <%= number_to_currency property.price %> por noche
         </p>
       </div>
     </div>

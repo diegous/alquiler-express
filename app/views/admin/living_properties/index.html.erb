@@ -1,0 +1,46 @@
+<%= render 'living_properties/searchbar', url: admin_living_properties_path %>
+
+<div class="max-w-6xl mx-auto px-6 pb-6">
+  <%= link_to new_admin_living_property_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" do %>
+    <%= render 'svgs/plus' %>
+    Nueva vivienda
+  <% end %>
+</div>
+
+<main class="px-6 pb-12 max-w-6xl mx-auto">
+  <div class="overflow-x-auto bg-white rounded-2xl shadow">
+    <table class="min-w-full text-sm text-left">
+      <thead class="bg-[#144B7F] text-white">
+        <tr>
+          <th class="px-6 py-4">Nombre</th>
+          <th class="px-6 py-4">Habitaciones</th>
+          <th class="px-6 py-4">Capacidad de huéspedes</th>
+          <th class="px-6 py-4">Tipo</th>
+          <th class="px-6 py-4"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @properties.empty? %>
+          <tr class="border-t hover:bg-gray-100">
+            <td class="px-6 py-4 text-center" colspan="5">No se encontraron viviendas</td>
+          </tr>
+        <% end %>
+        <% @properties.each do |property| %>
+          <tr class="border-t hover:bg-gray-100">
+            <td class="px-6 py-4"><%= property.name %></td>
+            <td class="px-6 py-4"><%= property.bedrooms %></td>
+            <td class="px-6 py-4"><%= property.guest_capacity %></td>
+            <td class="px-6 py-4"><%= enum_t(property.living_property_type, key: :living_property).capitalize %></td>
+            <td class="px-6 py-4 flex gap-2">
+              <%= link_to edit_admin_living_property_path(property), class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-blue-500 text-white hover:bg-blue-600" do %>
+                <%= render 'svgs/edit' %>
+                Editar
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>
