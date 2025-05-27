@@ -2,7 +2,7 @@ class Admin::LivingPropertiesController < ApplicationController
   require_admin!
 
   def index
-    @properties = LivingProperty.all
+    @properties = LivingPropertySearch.new.filter(LivingProperty.all, params:)
   end
 
   def new
