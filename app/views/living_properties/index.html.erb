@@ -1,5 +1,11 @@
 <%= render 'searchbar', url: living_properties_path %>
 
+<% if @properties.empty? %>
+  <div class="w-full text-center">
+    No se encontraron viviendas
+  </div>
+<% end %>
+
 <main class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 pb-12 max-w-6xl mx-auto">
   <% @properties.each do |property| %>
     <div class="rounded-2xl shadow bg-white overflow-hidden">

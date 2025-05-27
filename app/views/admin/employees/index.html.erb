@@ -33,6 +33,11 @@
       </thead>
 
       <tbody>
+        <% if @employees.empty? %>
+          <tr class="border-t hover:bg-gray-100">
+            <td class="px-6 py-4 text-center" colspan="6">No se encontraron empleados</td>
+          </tr>
+        <% end %>
         <% @employees.each do |employee| %>
           <%
             row_background_color = if employee.enabled?
