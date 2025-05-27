@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "living_properties#index"
 
-  resources :living_properties do
+  resources :living_properties, only: %i[index show] do
     resources :rentals, only: %i[index new create]
   end
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :living_properties, except: :show
     resources :employees do
       member { patch :enable }
     end
