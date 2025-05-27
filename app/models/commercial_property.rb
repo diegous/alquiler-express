@@ -1,7 +1,5 @@
 class CommercialProperty < Property
-validates :width, :length, presence: {
-  message: "es obligatorio"
-}
+validates :width, :length, presence: true
 validates :width, :length, numericality: {
   greater_than_or_equal_to: 1,
   less_than_or_equal_to: 100,
