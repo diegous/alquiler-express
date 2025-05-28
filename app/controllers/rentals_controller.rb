@@ -10,15 +10,17 @@ class RentalsController < ApplicationController
   end
 
   def new
-    @rental = Rental.new
+    @rental = @property.rentals.new
+    @rental.owner = Current.user
   end
 
   def create
     @rental = @property.rentals.new(living_property_rental_params)
     @rental.owner = Current.user
+    @rental.status = :dates_selected
 
     if @rental.save
-      redirect_to rental_guests_path(@rental)
+      redirect_to rental_path(@rental)
     else
       render :new
     end
