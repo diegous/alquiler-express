@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :living_properties, except: :show
+    resources :rentals, only: %i[index show]
     resources :employees do
       member { patch :enable }
     end
