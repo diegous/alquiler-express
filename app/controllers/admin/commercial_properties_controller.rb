@@ -37,6 +37,6 @@ class Admin::CommercialPropertiesController < ApplicationController
 
   def commercial_property_params
     params.require(:commercial_property)
-          .permit(:name, :price, :city, :length, :width, :description, pictures: [])
+          .permit(:name, :price, :city, :length, :width, :description, :pictures)
   end
 end
