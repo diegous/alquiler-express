@@ -15,9 +15,15 @@ class RentalsController < ApplicationController
   end
 
   def create
-    @rental = @property.rentals.new(living_property_rental_params)
+    @rental = @property.rentals.new(property_rental_params)
     @rental.owner = Current.user
-    @rental.status = :dates_selected
+
+    if @property.is_a?(LivingProperty)
+      @rental.status = :dates_selected
+    else
+      logger.debug "Errores al guardar: #{@rental.errors.full_messages.inspect}"
+      @rental.status = :requested
+    end
 
     if @rental.save
       redirect_to rental_path(@rental)
@@ -27,12 +33,11 @@ class RentalsController < ApplicationController
   end
 
   private
-
   def set_property
-    @property ||= Property.find(params[:living_property_id])
+      @property ||= Property.find(params[:property_id])
   end
 
-  def living_property_rental_params
+  def property_rental_params
     params.require(:rental).permit(:start, :end)
   end
 end

@@ -21,6 +21,14 @@ class Rental < ApplicationRecord
     canceled: 100
   }
 
+  def get_property
+    self.property
+  end
+
+  def in_dates_selected?
+    self.property
+  end
+
   private
 
   def assign_total_cost
@@ -49,10 +57,11 @@ class Rental < ApplicationRecord
 
   def valid_user_amount
     return if self.dates_selected?
+    return unless property.is_a?(LivingProperty)
 
     if users.none?
       errors.add(:base, "Debe haber al menos un inquilino")
-    elsif user.count > property.guest_capacity
+    elsif users.count > property.guest_capacity
       errors.add(:base, "Debe haber un máximo de #{property.guest_capacity} inquilinos")
     end
   end

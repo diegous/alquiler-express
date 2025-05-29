@@ -9,4 +9,8 @@ class LivingProperty < Property
     house: 10,
     apartment: 20
   }
+
+  def must_have_guests?
+    true
+  end
 end

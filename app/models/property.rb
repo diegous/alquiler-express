@@ -7,6 +7,10 @@ class Property < ApplicationRecord
   has_many_attached :pictures
   validate :must_have_a_picture
 
+  def must_have_guests?
+    false
+  end
+
   private
 
   def must_have_a_picture

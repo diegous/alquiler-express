@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   resources :commercial_properties, only: %i[index show]
 
-  resources :living_properties, only: %i[index show] do
+  resources :living_properties, only: %i[index show]
+
+  resources :properties, only: [] do
     resources :rentals, only: %i[index new create]
   end
 
