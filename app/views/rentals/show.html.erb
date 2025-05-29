@@ -49,7 +49,7 @@
       </div>
 
       <% if Current.user == @rental.owner %>
-        <%= link_to "Agregar huésped", new_rental_guest_path(@rental), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
+        <%= link_to "Agregar huésped", find_by_dni_rental_guest_path(@rental), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
       <% end %>
     </div>
   </div>

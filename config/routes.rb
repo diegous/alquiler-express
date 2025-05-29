@@ -23,7 +23,12 @@ Rails.application.routes.draw do
   end
 
   resources :rentals, only: %i[index show] do
-    resource :guest, only: %i[new create destroy]
+    resource :guest, only: %i[new create destroy] do
+      member do
+        get :find_by_dni
+        post :add_by_dni
+      end
+    end
   end
 
   namespace :admin do

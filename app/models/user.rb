@@ -9,11 +9,8 @@ class User < ApplicationRecord
 
   validates :dni, uniqueness: true, allow_nil: true
 
-  validates :dni, numericality: {
-    only_integer: true,
-    greater_than: 1_000_000,
-    less_than: 100_000_000
-  }, allow_nil: true
+  validates :dni, numericality: { only_integer: true }, allow_nil: true
+  validate :dni_valid_range
 
   def admin?
     false
@@ -29,5 +26,23 @@ class User < ApplicationRecord
 
   def disabled?
     !enabled?
+  end
+
+  private
+
+  def dni_valid_range
+    return if dni.blank?
+
+    integer_dni = Integer(dni)
+
+    if integer_dni > 100_000_000
+      errors.add(:dni, "debe ser menor a 100 millones")
+    end
+
+    if integer_dni < 1_000_000
+      errors.add(:dni, "debe ser mayor a 1 millón")
+    end
+  rescue ArgumentError
+    errors.add(:dni, "no es un número válido")
   end
 end

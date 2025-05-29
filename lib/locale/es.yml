@@ -12,7 +12,7 @@ es:
         house: casa
         apartment: departamento
       rental:
-        draft: borrador
+        dates_selected: fechas seleccionadas
         requested: solicitada
         accepted: aceptada
         paid: pagada

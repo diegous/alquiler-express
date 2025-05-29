@@ -4,14 +4,34 @@
 
       <%= form_with model: @guest, url: rental_guest_path(rental) do |form| %>
         <div class="grid grid-cols-1 gap-5">
-          <% if @guest.dni.blank? %>
-            <div>
-              <%= form.label :dni, 'DNI (sin puntos)', class: 'block text-sm font-medium mb-1' %>
-              <%= form.text_field :dni, class: 'w-full p-2 rounded border border-gray-300' %>
-            </div>
-          <% else %>
-            <%= render 'form', form: form %>
-          <% end %>
+          <div class="text-[#333]">
+            No se encontró usuario en nuestra base de datos con ese DNI. Por favor, complete el resto de los datos:
+          </div>
+
+          <div>
+            <%= form.label :dni, 'DNI (sin puntos)', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_field :dni, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :last_name, 'Apellido', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_field :last_name, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :first_name, 'Nombre', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_field :first_name, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :dob, 'Fecha de nacimiento', class: 'block text-sm font-medium mb-1' %>
+            <%= form.date_field :dob, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
+
+          <div>
+            <%= form.label :email_address, 'Email', class: 'block text-sm font-medium mb-1' %>
+            <%= form.email_field :email_address, class: 'w-full p-2 rounded border border-gray-300' %>
+          </div>
 
           <div>
             <%= form.submit 'Agregar', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-xl px-6' %>

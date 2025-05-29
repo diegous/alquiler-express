@@ -14,8 +14,10 @@
         </div>
       </div>
 
-      <div>
+      <div class="mt-5 space-x-5">
         <%= form.submit 'Guardar', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-xl px-6' %>
+
+        <%= link_to "Cancelar", living_property_path(@rental.property), class: "text-sm font-medium transition-colors shadow bg-gray-200 text-[#333] hover:bg-gray-300 rounded-xl px-6 py-[10px]" %>
       </div>
     <% end %>
   </div>

@@ -2,23 +2,39 @@ class GuestsController < ApplicationController
   helper_method :rental
   before_action :authorize_owner, only: %i[new create]
 
-  def new
+  def find_by_dni
     @guest = rental.users.new(type: Guest)
   end
 
-  def create
-    dni = params[:guest][:dni]
+  def add_by_dni
+    user = User.find_by(dni: guest_params[:dni])
 
-    if dni.present? && new_guest = User.find_by(dni: dni)
-      rental.users << new_guest
-      return redirect_to rental_guests_path(rental)
+    if user && user.dni.present?
+      rental.users << user
+      return redirect_to rental_path(rental)
     end
 
+    @guest = rental.users.new(type: Guest, dni: guest_params[:dni])
+    @guest.valid?
+
+    if @guest.errors[:dni].any?
+      render :find_by_dni
+    else
+      redirect_to new_rental_guest_path(dni: @guest.dni)
+    end
+  end
+
+  def new
+    @guest = rental.users.new(type: Guest, dni: params[:dni])
+  end
+
+  def create
     @guest = Guest.new(guest_params)
 
     Guest.transaction do
+      @guest.save!
       rental.users << @guest
-      redirect_to rental_guests_path(rental)
+      redirect_to rental_path(rental)
     rescue ActiveRecord::RecordInvalid
       render :new
     end

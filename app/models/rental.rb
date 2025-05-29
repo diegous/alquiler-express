@@ -12,7 +12,7 @@ class Rental < ApplicationRecord
   before_create :assign_total_cost
 
   enum :status, {
-    draft: 0,
+    dates_selected: 0,
     requested: 5,
     accepted: 10,
     paid: 20,
@@ -48,7 +48,7 @@ class Rental < ApplicationRecord
   end
 
   def valid_user_amount
-    return if self.draft?
+    return if self.dates_selected?
 
     if users.none?
       errors.add(:base, "Debe haber al menos un inquilino")
