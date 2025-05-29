@@ -13,6 +13,12 @@ class User < ApplicationRecord
   validates :dni, numericality: { only_integer: true }, allow_nil: true
   validate :dni_valid_range
 
+  generates_token_for :password_reset, expires_in: 1.hour
+
+  def password_reset_token
+    generate_token_for(:password_reset)
+  end
+
   def admin?
     false
   end
