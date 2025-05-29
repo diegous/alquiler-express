@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :employees do
       member { patch :enable }
     end
+    resources :rentals, only: %i[index show]
   end
 
   resource :two_fa, only: %i[new create]

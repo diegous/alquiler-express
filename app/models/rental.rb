@@ -29,7 +29,7 @@ class Rental < ApplicationRecord
     #   total_cost = property.price * hours
     # else
     days = (self.end - self.start) / 1.day
-    total_cost = property.price * days
+    self.total_cost = property.price * days
     # end
   end
 
