@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :email_address, uniqueness: true
 
   validates :dni, uniqueness: true, allow_nil: true
+  validates :phone, allow_nil: true, format: { with: /\d{10}/, message: "deben ser 10 dígitos" }
 
   validates :dni, numericality: { only_integer: true }, allow_nil: true
   validate :dni_valid_range

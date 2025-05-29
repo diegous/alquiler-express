@@ -6,7 +6,7 @@ employee:
   password_digest: <%= password_digest %>
   last_name: Lennon
   first_name: John
-  phone: 1234567
+  phone: 2215127845
   dni: 6655441
 
 employee2:
@@ -15,5 +15,5 @@ employee2:
   password_digest: <%= password_digest %>
   last_name: Lauper
   first_name: Cyndi
-  phone: 2345678
+  phone: 2215987654
   dni: 3355774
