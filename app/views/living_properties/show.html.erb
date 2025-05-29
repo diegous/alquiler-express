@@ -12,7 +12,9 @@
       </ul>
       <p class="text-gray-800 leading-relaxed mb-6"><%= @property.description %></p>
 
-      <% if Current.user&.customer? %>
+      <% if Current.user.blank? %>
+        <%= link_to "Solicitar reserva", new_session_path, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
+      <% elsif Current.user&.customer? %>
         <%= link_to "Solicitar reserva", new_living_property_rental_path(@property), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
       <% end %>
     </div>
