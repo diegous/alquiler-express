@@ -21,7 +21,7 @@ class Admin::EmployeesController < ApplicationController
     @employee = Employee.new
 
     if @employee.update(employee_params)
-      redirect_to admin_employees_path
+      redirect_to admin_employees_path, notice: "Empleado #{@employee.email_address} fue creado"
     else
       render :new
     end
@@ -35,7 +35,7 @@ class Admin::EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
 
     if @employee.update(employee_params)
-      redirect_to admin_employees_path
+      redirect_to admin_employees_path, notice: "Empleado #{@employee.email_address} fue actualizado"
     else
       render :edit
     end
@@ -44,13 +44,13 @@ class Admin::EmployeesController < ApplicationController
   def destroy
     employee = Employee.find(params[:id])
     employee.update!(enabled: false)
-    redirect_to admin_employees_path
+    redirect_to admin_employees_path, notice: "Empleado #{employee.email_address} desactivado"
   end
 
   def enable
     employee = Employee.find(params[:id])
     employee.update!(enabled: true)
-    redirect_to admin_employees_path
+    redirect_to admin_employees_path, notice: "Empleado #{employee.email_address} activado"
   end
 
   private
