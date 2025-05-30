@@ -13,7 +13,7 @@ class Admin::CommercialPropertiesController < ApplicationController
     @property = CommercialProperty.new(commercial_property_params)
 
     if @property.save
-      redirect_to commercial_property_path(@property)
+      redirect_to commercial_property_path(@property), notice: "Local creado exitosamente"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::CommercialPropertiesController < ApplicationController
     @property = CommercialProperty.find(params[:id])
 
     if @property.update(commercial_property_params)
-      redirect_to commercial_property_path(@property)
+      redirect_to commercial_property_path(@property), notice: "Local actualizado exitosamente"
     else
       render :edit
     end
