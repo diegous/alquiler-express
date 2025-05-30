@@ -6,7 +6,7 @@ user_one:
   password_digest: <%= password_digest %>
   last_name: Perez
   first_name: Juan
-  phone: 56498712
+  phone: 2215987456
   gender: male
   dni: 1122334
   dob: 1970-12-23
@@ -17,7 +17,7 @@ user_two:
   password_digest: <%= password_digest %>
   last_name: Gomez
   first_name: Ana
-  phone: 45645678
+  phone: 2215571523
   gender: female
   dni: 99887755
   dob: 2000-03-15
@@ -28,7 +28,7 @@ user_three:
   password_digest: <%= password_digest %>
   last_name: Ferro
   first_name: Alex
-  phone: 45645678
+  phone: 2215684759
   gender: other
   dni: 1155998
   dob: 1995-04-30

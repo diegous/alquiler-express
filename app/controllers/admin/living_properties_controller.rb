@@ -13,7 +13,7 @@ class Admin::LivingPropertiesController < ApplicationController
     @property = LivingProperty.new(living_property_params)
 
     if @property.save
-      redirect_to living_property_path(@property)
+      redirect_to living_property_path(@property), notice: "Vivienda creada exitosamente"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::LivingPropertiesController < ApplicationController
     @property = LivingProperty.find(params[:id])
 
     if @property.update(living_property_params)
-      redirect_to living_property_path(@property)
+      redirect_to living_property_path(@property), notice: "Vivienda actualizada exitosamente"
     else
       render :edit
     end

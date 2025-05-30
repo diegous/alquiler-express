@@ -11,7 +11,7 @@ class GuestsController < ApplicationController
 
     if user && user.dni.present?
       rental.users << user
-      return redirect_to rental_path(rental)
+      return redirect_to rental_path(rental), notice: "Huesped agregado"
     end
 
     @guest = rental.users.new(type: Guest, dni: guest_params[:dni])
@@ -34,7 +34,7 @@ class GuestsController < ApplicationController
     Guest.transaction do
       @guest.save!
       rental.users << @guest
-      redirect_to rental_path(rental)
+      redirect_to rental_path(rental), notice: "Huesped agregado"
     rescue ActiveRecord::RecordInvalid
       render :new
     end

@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
 
     if @customer.update(customer_params)
       CustomerMailer.with(customer: @customer).welcome_email.deliver_now
-      redirect_to root_path
+      redirect_to root_path, notice: "Cuenta creada exitosamente"
     else
       render :new
     end

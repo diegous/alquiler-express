@@ -36,10 +36,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :living_properties, except: :show
     resources :commercial_properties, except: :show
+    resources :rentals, only: %i[index show]
     resources :employees do
       member { patch :enable }
     end
-    resources :rentals, only: %i[index show]
   end
 
   resource :two_fa, only: %i[new create]
