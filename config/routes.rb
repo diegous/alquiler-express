@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   root "living_properties#index"
 
   resources :commercial_properties, only: %i[index show]
-
   resources :living_properties, only: %i[index show]
+  resources :garages, only: %i[index show]
 
   resources :properties, only: [] do
     resources :rentals, only: %i[index new create]
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :living_properties, except: :show
     resources :commercial_properties, except: :show
+    resources :garages, except: :show
     resources :rentals, only: %i[index show]
     resources :employees do
       member { patch :enable }

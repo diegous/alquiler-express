@@ -1,0 +1,21 @@
+garage_with_roof:
+  type: Garage
+  name: Cochera en el centro
+  price: 300.0
+  city: Punta Lara
+  width: 2
+  length: 3.5
+  description: |
+    Alquiler cochera en subsuelo de edificio en 11 entre 44 y 43
+    Cochera cubierta a través de rampa levadiza.
+    Portón automático.
+
+garage_without_roof:
+  type: Garage
+  name: Cochera residencial
+  price: 275.42
+  city: Villa Elisa
+  width: 2.5
+  length: 4
+  description: |
+    Cochera descubierta con portón eléctrico. Sin expensas.

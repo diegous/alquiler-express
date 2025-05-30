@@ -5,8 +5,8 @@ beach_house_blob: <%= ActiveStorage::FixtureSet.blob filename: "beach_house.jpeg
 appartment_near_park_blob: <%= ActiveStorage::FixtureSet.blob filename: "appartment_near_park.jpeg" %>
 
 # Garages
-covered_garage_blob: <%= ActiveStorage::FixtureSet.blob filename: "covered_garage.jpg" %>
-non_roofed_garage_blob: <%= ActiveStorage::FixtureSet.blob filename: "non-roofed_garage.jpg" %>
+garage_with_roof_blob: <%= ActiveStorage::FixtureSet.blob filename: "covered_garage.jpg" %>
+garage_without_roof_blob: <%= ActiveStorage::FixtureSet.blob filename: "non-roofed_garage.jpg" %>
 
 # Commercial space
 commercial_space_1_blob: <%= ActiveStorage::FixtureSet.blob filename: "commercial_space_1.jpg" %>

@@ -1,0 +1,32 @@
+<%= render 'searchbar', url: garages_path %>
+
+<% if @garages.empty? %>
+  <div class="w-full text-center">
+    No se encontraron cocheras
+  </div>
+<% end %>
+
+<main class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 pb-12 max-w-6xl mx-auto">
+  <% @garages.each do |garage| %>
+    <div class="rounded-2xl shadow bg-white overflow-hidden">
+      <%= link_to garage do %>
+        <%= image_tag rails_blob_path(garage.pictures.first, disposition: "attachment"), class: 'w-full object-cover h-48' %>
+      <% end %>
+
+      <div class="p-4">
+        <h2 class="text-xl font-semibold text-[#144B7F]"><%= garage.name %></h2>
+        <p class="text-sm text-gray-600">
+          <%= garage.length %>
+          m de largo
+        </p>
+        <p class="text-sm text-gray-600">
+          <%= garage.width %>
+          m de ancho
+        </p>
+        <p class="mt-2 text-[#FF6C1E] font-bold">
+          <%= number_to_currency garage.price %> por noche
+        </p>
+      </div>
+    </div>
+  <% end %>
+</main>
