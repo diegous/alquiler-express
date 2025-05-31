@@ -32,13 +32,13 @@ class Rental < ApplicationRecord
   private
 
   def assign_total_cost
-    # if property.is_a?(Garage)
-    #   hours = (self.end - self.start) / 1.hour
-    #   total_cost = property.price * hours
-    # else
-    days = (self.end - self.start) / 1.day
-    self.total_cost = property.price * days
-    # end
+    if property.is_a?(Garage)
+      hours = (self.end - self.start) / 1.hour
+      self.total_cost = property.price * hours
+    else
+      days = (self.end - self.start) / 1.day
+      self.total_cost = property.price * days
+    end
   end
 
   def no_colliding_rentals
@@ -52,6 +52,11 @@ class Rental < ApplicationRecord
     if rentals.any?
       errors.add(:start, "Ya hay una reserva en esas fechas")
       errors.add(:end, "Ya hay una reserva en esas fechas")
+
+      start_string = I18n.l(rentals.first.start, format: :short)
+      end_string = I18n.l(rentals.first.end, format: :short)
+
+      errors.add(:base, "Hay una reserva de #{start_string} a #{end_string}")
     end
   end
 

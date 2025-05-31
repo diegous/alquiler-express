@@ -2,10 +2,32 @@ es:
   date:
     day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
     month_names: [none, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_day_names: [dom, lun, mar, mié, jue, vie, sáb]
+    abbr_month_names: [none, ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic]
+    order:
+    - :day
+    - :month
+    - :year
     formats:
       default: "%d/%m/%Y"
       long: "%F"
+      detailed: "%A, %d de %B de %Y"
       day: "%A %e de %B"
+  datetime:
+    prompts:
+      second: Segundo
+      minute: Minuto
+      hour: Hora
+      day: Día
+      month: Mes
+      year: Año
+  time:
+    am: am
+    formats:
+      default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
+      long: "%A, %d de %B de %Y a las %I:%M %p"
+      short: "%d de %b a las %H:%M hrs"
+    pm: pm
   activerecord:
     enums:
       living_property:
@@ -43,3 +65,10 @@ es:
         significant: false
         strip_insignificant_zeros: false
         unit: "$"
+    format:
+      delimiter: "."
+      precision: 2
+      round_mode: default
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false

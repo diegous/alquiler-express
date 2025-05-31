@@ -2,15 +2,42 @@
   <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
     <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Solicitar reserva</h2>
 
+    <% if error = @rental.errors[:base].first %>
+      <%= tag.div(error, style: "color:red") %>
+    <% end %>
+
     <%= form_with model: [@property, @rental], url: property_rentals_path(@property) do |form| %>
       <div class="grid grid-cols-2 gap-4">
         <div>
           <%= form.label :start, 'Fecha de checkin', class: 'block text-sm font-medium mb-1' %>
-          <%= form.date_field :start, class: 'w-full p-2 rounded border border-gray-300' %>
+          <% if @property.is_a? Garage %>
+            <%=
+              form.datetime_field(
+                :start,
+                step: 3600,
+                min: Time.current.beginning_of_hour + 1.hour,
+                class: 'w-full p-2 rounded border border-gray-300',
+              )
+            %>
+          <% else %>
+            <%= form.date_field :start, class: 'w-full p-2 rounded border border-gray-300' %>
+          <% end %>
         </div>
         <div>
           <%= form.label :end, 'Fecha de checkout', class: 'block text-sm font-medium mb-1' %>
-          <%= form.date_field :end, class: 'w-full p-2 rounded border border-gray-300' %>
+          <% if @property.is_a? Garage %>
+            <%=
+              form.datetime_field(
+                :end,
+                step: 3600,
+                min: Time.current.beginning_of_hour + 2.hours,
+                class: 'w-full p-2 rounded border border-gray-300'
+              )
+            %>
+          <% else %>
+            <%= form.date_field :end, class: 'w-full p-2 rounded border border-gray-300' %>
+          <% end %>
+
         </div>
       </div>
 
