@@ -13,19 +13,21 @@ appartment_near_park_picture:
 # Garages
 garage_with_roof_picture:
   name: pictures
-  record: (Property)
+  record: garage_with_roof (Property)
   blob: garage_with_roof_blob
+
 garage_without_roof_picture:
   name: pictures
-  record: (Property)
+  record: garage_without_roof (Property)
   blob: garage_without_roof_blob
 
 # Commercial space
 commercial_space_1_picture:
   name: pictures
-  record: (Property)
+  record: commercial_space_1 (Property)
   blob: commercial_space_1_blob
+
 commercial_space_2_picture:
   name: pictures
-  record: (Property)
+  record: commercial_space_2 (Property)
   blob: commercial_space_2_blob

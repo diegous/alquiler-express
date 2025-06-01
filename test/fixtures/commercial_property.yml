@@ -1,0 +1,22 @@
+commercial_space_1:
+  type: CommercialProperty
+  name: Local en la Playa
+  price: 1000.0
+  city: Punta Lara
+  width: 2
+  length: 3.5
+  description: |
+    Local ubicado en una zona turística de la playa, 
+    ideal para negocios de souvenirs o actividades acuáticas.
+
+
+commercial_space_2:
+  type: CommercialProperty
+  name: Local en el Barrio
+  price: 400.0
+  city: La Plata
+  width: 2.5
+  length: 4
+  description: |
+    Local ubicado en un barrio residencial, 
+    perfecto para negocios de proximidad como panaderías o farmacias.
