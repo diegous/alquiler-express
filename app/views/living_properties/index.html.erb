@@ -16,6 +16,9 @@
       <div class="p-4">
         <h2 class="text-xl font-semibold text-[#144B7F]"><%= property.name %></h2>
         <p class="text-sm text-gray-600">
+          <%= property.city %>
+        </p>
+        <p class="text-sm text-gray-600">
           <%= enum_t(property.living_property_type, key: :living_property).capitalize %>
           de
           <%= property.bedrooms %>
