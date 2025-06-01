@@ -17,7 +17,8 @@
 
         <div>
           <%= form.submit 'Guardar', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-xl px-6' %>
-        </div>
+          
+          <%= link_to "Cancelar", admin_employees_path, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 rounded-xl px-6 text-sm bg-red-500 text-white hover:bg-red-600" %>
       </div>
     <% end %>
   </div>
