@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   has_many :rentals
+  has_many :reviews, dependent: :destroy
 
   validates :name, :city, :price, :description, presence: true
   validates :price, numericality: { greater_than: 0 }

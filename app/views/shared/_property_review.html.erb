@@ -1,0 +1,18 @@
+<div class="rounded-2xl shadow bg-white overflow-hidden mt-6">
+  <div class="p-6">
+    <h2 class="text-3xl font-bold text-[#144B7F] mb-2">Reseñas</h2>
+    <% if property.reviews.empty? %>
+      <p>No hay reseñas hasta ahora.</p>
+    <% end %>
+
+    <% property.reviews.each do |review| %>
+      <div class="mt-6">
+        <strong><%= review.user.full_name %></strong>
+        <span class="text-xs text-gray-700"><%=l review.created_at, format: :shortest %></span>
+        <p><%= review.message %></p>
+      </div>
+    <% end %>
+
+    <%= link_to "Dejar reseña", new_property_review_path(property), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600 mt-6" %>
+  </div>
+</div>

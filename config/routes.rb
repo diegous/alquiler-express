@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :properties, only: [] do
     resources :rentals, only: %i[index new create]
+    resource :review, only: %i[new create]
   end
 
   resources :rentals, only: %i[index show] do

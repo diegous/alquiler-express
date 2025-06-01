@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_25_234955) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_01_171504) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -82,6 +82,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_25_234955) do
     t.index ["user_id"], name: "index_rentals_users_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "message"
+    t.integer "user_id", null: false
+    t.integer "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_reviews_on_property_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -116,5 +126,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_25_234955) do
   add_foreign_key "rentals", "users", column: "owner_id"
   add_foreign_key "rentals_users", "rentals"
   add_foreign_key "rentals_users", "users"
+  add_foreign_key "reviews", "properties"
+  add_foreign_key "reviews", "users"
   add_foreign_key "sessions", "users"
 end

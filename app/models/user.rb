@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
+  has_many :review, dependent: :destroy
   has_and_belongs_to_many :rentals
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
@@ -33,6 +34,10 @@ class User < ApplicationRecord
 
   def disabled?
     !enabled?
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   private

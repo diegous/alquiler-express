@@ -1,0 +1,18 @@
+<main class="max-w-4xl mx-auto px-6 py-10">
+   <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
+      <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Nueva reseña</h2>
+
+      <%= form_with model: @review, url: property_review_path(@review.property) do |form| %>
+        <div class="grid grid-cols-1 gap-5">
+          <div>
+            <%= form.label :message, 'Reseña', class: 'block text-sm font-medium mb-1' %>
+            <%= form.text_area :message, class: 'w-full p-2 rounded border border-gray-300', rows: 4 %>
+          </div>
+
+          <div>
+            <%= form.submit 'Crear', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-xl px-6' %>
+          </div>
+        </div>
+      <% end %>
+   </div>
+</main>
