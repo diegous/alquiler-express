@@ -32,6 +32,9 @@ Rails.application.routes.draw do
         post :add_by_dni
       end
     end
+    member do
+      post :send_request
+    end
   end
 
   namespace :admin do

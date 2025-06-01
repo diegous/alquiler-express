@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     @review.user = Current.user
 
     if @review.save
-      redirect_to property
+      redirect_to property, notice: "Reseña creada con éxito"
     else
       render :new
     end

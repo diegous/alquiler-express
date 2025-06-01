@@ -18,17 +18,22 @@ class RentalsController < ApplicationController
     @rental = @property.rentals.new(property_rental_params)
     @rental.owner = Current.user
 
-    if @property.is_a?(LivingProperty)
-      @rental.status = :dates_selected
-    else
-      logger.debug "Errores al guardar: #{@rental.errors.full_messages.inspect}"
-      @rental.status = :requested
-    end
+    @rental.status = :dates_selected
 
     if @rental.save
       redirect_to rental_path(@rental)
     else
       render :new
+    end
+  end
+
+  def send_request
+    @rental = Current.user.owned_rentals.find(params[:id])
+    if @rental.owner == Current.user
+      @rental.requested!
+      redirect_to rental_path(@rental), notice: "Solicitud enviada"
+    else
+      redirect_to rental_path(@rental), notice: "No es el solicitante"
     end
   end
 

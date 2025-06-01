@@ -10,6 +10,7 @@ class Rental < ApplicationRecord
   validate :valid_start_and_end
 
   before_create :assign_total_cost
+  before_validation :assign_owner_as_guest, on: :create
 
   enum :status, {
     dates_selected: 0,
@@ -25,9 +26,11 @@ class Rental < ApplicationRecord
     self.property
   end
 
-  def in_dates_selected?
-    self.property
+  def needs_guest?
+    return false unless property.is_a?(LivingProperty)
+    users.count < property.guest_capacity
   end
+
 
   private
 
@@ -82,5 +85,11 @@ class Rental < ApplicationRecord
     if self.start <= Time.current
       errors.add(:start, "debe ser posterior a hoy")
     end
+  end
+
+  def assign_owner_as_guest
+    return unless property.must_have_guests?
+
+    self.users << owner unless self.users.include?(owner)
   end
 end
