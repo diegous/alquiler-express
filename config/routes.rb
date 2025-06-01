@@ -37,7 +37,11 @@ Rails.application.routes.draw do
     resources :living_properties, except: :show
     resources :commercial_properties, except: :show
     resources :garages, except: :show
-    resources :rentals, only: %i[index show]
+    resources :rentals, only: %i[index show] do
+      member do
+        patch :accept
+      end
+    end
     resources :employees do
       member { patch :enable }
     end

@@ -26,20 +26,28 @@
         <p class="text-lg font-semibold text-[#FF6C1E]">Total: <%= number_to_currency @rental.total_cost %></p>
       </div>
 
-      <div>
-        <h3 class="text-xl font-semibold text-[#144B7F]">Huéspedes</h3>
-        <ul class="divide-y divide-gray-200 mt-4">
-          <% @rental.users.each do |user| %>
-            <li class="py-3">
-              <div class="text-sm text-[#333]">
-                <p><strong><%= user.first_name %> <%= user.last_name %></strong></p>
-                <p class="text-[#666]">DNI: <%= user.dni %></p>
-                <p class="text-[#666]">F.d.n.: <%=l user.dob, format: :long %></p>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <% if @rental.property.must_have_guests? %>
+        <div>
+          <h3 class="text-xl font-semibold text-[#144B7F]">Huéspedes</h3>
+          <ul class="divide-y divide-gray-200 mt-4">
+            <% @rental.users.each do |user| %>
+              <li class="py-3">
+                <div class="text-sm text-[#333]">
+                  <p><strong><%= user.first_name %> <%= user.last_name %></strong></p>
+                  <p class="text-[#666]">DNI: <%= user.dni %></p>
+                  <p class="text-[#666]">F.d.n.: <%=l user.dob, format: :long %></p>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @rental.requested? %>
+        <%= tag.div(flash[:error], style: "color:red") if flash[:error] %>
+
+        <%= button_to "Aceptar solicitud de reserva", accept_admin_rental_path(@rental), method: :patch, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
+      <% end %>
     </div>
   </div>
 </main>
