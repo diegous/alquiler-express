@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate_by(params.permit(:email_address, :password))
+    user = User.find_by(email_address: params[:email_address])
 
-    unless user
+    unless user&.authenticate(params[:password])
       return redirect_to new_session_path, alert: "Mail o contraseña incorrectos"
     end
 
