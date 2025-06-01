@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "living_properties#index"
+  root "home#redirect_by_role"
 
   resources :commercial_properties, only: %i[index show]
   resources :living_properties, only: %i[index show]

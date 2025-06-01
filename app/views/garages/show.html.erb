@@ -1,4 +1,23 @@
 <main class="max-w-4xl mx-auto px-6 py-10">
+
+  <% if Current.user&.admin? %>
+    <%= link_to admin_garages_path do %>
+      <button class="inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors shadow h-9 py-2 bg-[#FF6C1E] text-white rounded-2xl px-4 hover:bg-orange-600 my-3">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+        </svg>
+      </button>
+    <% end %>
+  <% else %>
+    <%= link_to garages_path do %>
+      <button class="inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors shadow h-9 py-2 bg-[#FF6C1E] text-white rounded-2xl px-4 hover:bg-orange-600 my-3">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+        </svg>
+      </button>
+    <% end %>
+  <% end %>
+
   <div class="rounded-2xl shadow bg-white overflow-hidden" style="opacity: 1; transform: none;">
     <%= image_tag rails_blob_path(@garage.pictures.first, disposition: "attachment"), class: 'w-full object-cover h-110' %>
 
@@ -21,6 +40,8 @@
         <%= link_to "Solicitar reserva", new_session_path, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
       <% elsif Current.user&.customer? %>
         <%= link_to "Solicitar reserva", new_property_rental_path(@garage), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
+      <% elsif Current.user&.admin? %>
+        <%= link_to "Editar", edit_admin_garage_path(@garage), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
       <% end %>
     </div>
   </div>

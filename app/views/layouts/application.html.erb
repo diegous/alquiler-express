@@ -36,20 +36,21 @@
           </div>
         <% end %>
         <div class="flex gap-4">
+          <% if !Current.user&.admin? %>
+            <%= link_to living_properties_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
+              <%= render 'svgs/living_property' %>
+              Viviendas
+            <% end %>
 
-          <%= link_to living_properties_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
-            <%= render 'svgs/living_property' %>
-            Viviendas
-          <% end %>
+            <%= link_to commercial_properties_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
+              <%= render 'svgs/commercial_space' %>
+              Locales
+            <% end %>
 
-          <%= link_to commercial_properties_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
-            <%= render 'svgs/commercial_space' %>
-            Locales
-          <% end %>
-
-          <%= link_to garages_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
-            <%= render 'svgs/garage' %>
-            Cocheras
+            <%= link_to garages_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
+              <%= render 'svgs/garage' %>
+              Cocheras
+            <% end %>
           <% end %>
 
           <% if Current.user.present? %>
