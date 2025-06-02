@@ -43,7 +43,7 @@
 
   <div>
     <p class="block text-sm font-medium mb-1">Imagen actual</p>
-    <% if @property.pictures.any? %>
+    <% if @property.persisted? && @property.pictures.attached? %>
       <%= image_tag rails_blob_path(@property.pictures.first, disposition: "attachment"), class: 'w-50 object-contain h-30 m-2' %>
     <% else %>
       No hay imagen actual
