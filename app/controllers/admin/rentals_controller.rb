@@ -20,6 +20,8 @@ class Admin::RentalsController < ApplicationController
     @rental.accepted_at = Time.current
     @rental.accepted!
 
+    CustomerMailer.with(rental: @rental).rental_accepted.deliver_now
+
     redirect_to admin_rental_path(@rental)
   rescue ActiveRecord::RecordInvalid
     message = "No se pudo aceptar la solicitud de reserva"
