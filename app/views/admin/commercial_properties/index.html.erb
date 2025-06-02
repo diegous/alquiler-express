@@ -3,8 +3,7 @@
     <div class="flex flex-row gap-2 bg-white rounded-2xl shadow-md p-4 items-center">
       <%= form.search_field :city, placeholder: 'Ciudad', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm flex-1 px-4 border border-gray-300 rounded-xl', value: params[:city] %>
       <%= form.number_field :min_m2, in: 1.0..100.0, placeholder: 'm2 Minimos', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:min_m2], step: 0.01 %>
-      <%= form.number_field :max_m2, in: 1.0..100.0, placeholder: 'm2 Maximos', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:max_m2], step: 0.01 %>
-
+      
       <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600">
         <%= render 'svgs/lupa' %>
         Buscar

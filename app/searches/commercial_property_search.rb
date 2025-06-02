@@ -9,11 +9,6 @@ class CommercialPropertySearch
       collection = collection.where("width * length >= ?", min_m2)
     end
 
-    if params[:max_m2].present?
-      max_m2 = params[:max_m2].to_f
-      collection = collection.where("width * length <= ?", max_m2)
-    end
-
     collection
   end
 end
