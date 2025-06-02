@@ -14,8 +14,6 @@ class User < ApplicationRecord
   validates :dni, numericality: { only_integer: true }, allow_nil: true
   validate :dni_valid_range
 
-  validate :must_be_at_least_18_years_old
-
   validates :first_name, format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+\z/, message: "solo puede contener letras y espacios" }, allow_nil: true
   validates :last_name,  format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+\z/, message: "solo puede contener letras y espacios" }, allow_nil: true
 
@@ -61,14 +59,5 @@ class User < ApplicationRecord
     end
   rescue ArgumentError
     errors.add(:dni, "no es un número válido")
-  end
-
-
-  def must_be_at_least_18_years_old
-    return if dob.blank?
-
-    if dob > 18.years.ago.to_date
-      errors.add(:dob, "debe indicar una edad mínima de 18 años")
-    end
   end
 end
