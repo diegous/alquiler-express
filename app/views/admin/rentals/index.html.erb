@@ -1,5 +1,9 @@
 <main class="max-w-5xl mx-auto px-6 py-10 space-y-6">
-
+  <% if @rentals.empty? %>
+    <div class="w-full text-center">
+      No se encontraron reservas
+    </div>
+  <% end %>
   <% @rentals.each do |rental|%>
     <div class="rounded-2xl shadow bg-white overflow-hidden">
       <div class="p-4 flex items-center gap-6">
