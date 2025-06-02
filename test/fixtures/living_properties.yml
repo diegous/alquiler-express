@@ -20,7 +20,7 @@ living_property_beach_house:
 living_property_near_park:
   type: LivingProperty
   name: Departamento en Plaza Paso
-  price: 275.42
+  price: 200.50
   city: La Plata
   bedrooms: 1
   guest_capacity: 2

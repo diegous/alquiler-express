@@ -32,3 +32,14 @@ user_three:
   gender: other
   dni: 1155998
   dob: 1995-04-30
+
+user_four:
+  type: Customer
+  email_address: user4@example.com
+  password_digest: <%= password_digest %>
+  last_name: Górgory
+  first_name: Rafa
+  phone: 2215684759
+  gender: male
+  dni: 3216547
+  dob: 1995-04-30
