@@ -16,6 +16,9 @@ class User < ApplicationRecord
 
   validate :must_be_at_least_18_years_old
 
+  validates :first_name, format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+\z/, message: "solo puede contener letras y espacios" }, allow_nil: true
+  validates :last_name,  format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+\z/, message: "solo puede contener letras y espacios" }, allow_nil: true
+
   generates_token_for :password_reset, expires_in: 1.hour
 
   def password_reset_token

@@ -8,6 +8,10 @@ class Property < ApplicationRecord
   has_many_attached :pictures
   validate :must_have_a_picture
 
+  validates :name,  format: { with: /\A[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+\z/, message: "solo puede contener letras y espacios" }
+
+  validates :city, format: { with: /\A[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]+\z/, message: "solo puede contener letras, números y espacios" }, allow_nil: true
+
   def must_have_guests?
     false
   end
