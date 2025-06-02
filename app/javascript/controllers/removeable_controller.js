@@ -4,7 +4,7 @@ export default class extends Controller {
   static values = {
     showOrder: Number,
     showDelay: { type: Number, default: 200 },
-    removeDelay: { type: Number, default: 5000 },
+    removeDelay: { type: Number, default: 10_000 },
     dismissAfter: { type: Boolean, default: true }
   }
   static classes = [

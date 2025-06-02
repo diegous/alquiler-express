@@ -37,8 +37,15 @@
 
       <% if @rental.property.must_have_guests? %>
         <div>
-          <h3 class="text-xl font-semibold text-[#144B7F]">Huéspedes</h3>
+          <h3 class="text-xl font-semibold text-[#144B7F]">Huéspedes (máximo <%= @rental.property.guest_capacity %>)</h3>
           <ul class="divide-y divide-gray-200 mt-4">
+            <li class="py-3">
+              <div class="text-sm text-[#333]">
+                <p><strong><%= @rental.owner.first_name %> <%= @rental.owner.last_name %></strong></p>
+                <p class="text-[#666]">DNI: <%= @rental.owner.dni %></p>
+                <p class="text-[#666]">F.d.n.: <%=l @rental.owner.dob, format: :long %></p>
+              </div>
+            </li>
             <% @rental.users.each do |user| %>
               <li class="py-3">
                 <div class="text-sm text-[#333]">

@@ -10,7 +10,6 @@ class Rental < ApplicationRecord
   validate :valid_start_and_end
 
   before_create :assign_total_cost
-  before_validation :assign_owner_as_guest, on: :create
 
   enum :status, {
     dates_selected: 0,
@@ -31,8 +30,42 @@ class Rental < ApplicationRecord
     users.count < property.guest_capacity
   end
 
+  def max_users_reached?
+    users.count >= max_user_amount
+  end
+
+  def try_to_add_user(user)
+    if max_users_reached?
+      return {
+        result: false,
+        message: "Máxima cantidad de huéspedes alcanzada"
+      }
+    end
+
+    guest_dnis = users.map(&:dni) + [ owner.dni ]
+    if guest_dnis.include?(user.dni)
+      return {
+        result: false,
+        message: "Ya hay un huesped con ese DNI"
+      }
+    end
+
+    users << user
+
+    {
+      result: true,
+      message: "Huesped agregado"
+    }
+  end
 
   private
+
+  def max_user_amount
+    # The owner of the rental counts as 1 of the guests, so the upper
+    # limit of guests is: property.guest_capacity - 1
+
+    @max_user_amount ||= property.guest_capacity - 1
+  end
 
   def assign_total_cost
     if property.is_a?(Garage)
@@ -69,8 +102,8 @@ class Rental < ApplicationRecord
 
     if users.none?
       errors.add(:base, "Debe haber al menos un inquilino")
-    elsif users.count > property.guest_capacity
-      errors.add(:base, "Debe haber un máximo de #{property.guest_capacity} inquilinos")
+    elsif users.count > max_user_amount
+      errors.add(:base, "Debe haber un máximo de #{max_user_amount} inquilinos")
     end
   end
 
@@ -85,11 +118,5 @@ class Rental < ApplicationRecord
     if self.start <= Time.current
       errors.add(:start, "debe ser posterior a hoy")
     end
-  end
-
-  def assign_owner_as_guest
-    return unless property.must_have_guests?
-
-    self.users << owner unless self.users.include?(owner)
   end
 end
