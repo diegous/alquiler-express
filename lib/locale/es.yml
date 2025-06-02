@@ -51,6 +51,7 @@ es:
       less_than: "debe ser menor a %{count}"
       not_a_number: no es un número
       taken: ya está en uso
+      not_an_integer: no es un número entero
   misc:
     bedrooms:
       zero: sin habitaciones
