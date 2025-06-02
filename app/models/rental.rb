@@ -5,7 +5,6 @@ class Rental < ApplicationRecord
 
   validates :owner, :property, :start, :end, :status, :total_cost, presence: true
 
-  validate :valid_user_amount
   validate :no_colliding_rentals
   validate :valid_start_and_end
 
@@ -93,17 +92,6 @@ class Rental < ApplicationRecord
       end_string = I18n.l(rentals.first.end, format: :short)
 
       errors.add(:base, "Hay una reserva de #{start_string} a #{end_string}")
-    end
-  end
-
-  def valid_user_amount
-    return if self.dates_selected?
-    return unless property.is_a?(LivingProperty)
-
-    if users.none?
-      errors.add(:base, "Debe haber al menos un inquilino")
-    elsif users.count > max_user_amount
-      errors.add(:base, "Debe haber un máximo de #{max_user_amount} inquilinos")
     end
   end
 
