@@ -6,6 +6,7 @@ park_apartment_rental:
   users: [user_two]
   property: living_property_near_park
   total_cost: 601.5
+  accepted_at: <%= Time.current %>
 
 non_colliding_park_apartment_rental:
   start: <%= Time.zone.parse("2025-06-09") %>
@@ -22,3 +23,13 @@ colliding_park_apartment_rental:
   owner: user_four
   property: living_property_near_park
   total_cost: 601.5
+
+beach_house_expiring_rental:
+  start: <%= Time.zone.parse("2025-07-22") %>
+  end: <%= Time.zone.parse("2025-07-25") %>
+  status: accepted
+  owner: user_one
+  users: [user_two]
+  property: living_property_beach_house
+  total_cost: 900
+  accepted_at: <%= Time.zone.parse("2025-06-01 17:00") %>

@@ -2,6 +2,8 @@ class Admin::RentalsController < ApplicationController
   require_employee!
 
   def index
+    cancel_unpaid_rentals
+
     @rentals = if params[:requested] == "true"
       Rental.requested
     else
@@ -15,6 +17,7 @@ class Admin::RentalsController < ApplicationController
 
   def accept
     @rental = Rental.find(params[:id])
+    @rental.accepted_at = Time.current
     @rental.accepted!
 
     redirect_to admin_rental_path(@rental)
@@ -27,5 +30,14 @@ class Admin::RentalsController < ApplicationController
 
     flash[:error] = message
     redirect_to admin_rental_path(@rental)
+  end
+
+  private
+
+  # Hackish way of canceling rentals without a cron job
+  def cancel_unpaid_rentals
+    Rental.accepted
+          .where("accepted_at < ?", Time.current - 24.hours)
+          .each(&:canceled!)
   end
 end

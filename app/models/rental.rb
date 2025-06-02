@@ -77,9 +77,12 @@ class Rental < ApplicationRecord
   end
 
   def no_colliding_rentals
+    return unless %i[dates_selected requested accepted].include? status
+
     rentals = property
       .rentals
       .where(status: %i[accepted paid started])
+      .where.not(id: id)
       .where "end > :current_start AND start < :current_end",
              current_start: self.start,
              current_end: self.end
