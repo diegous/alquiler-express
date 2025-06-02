@@ -9,6 +9,7 @@ class Customer < User
 
   validates :gender, :last_name, :first_name, :phone, :dni, :dob,
             presence: true
+  validate :must_be_at_least_18_years_old
 
   def customer?
     true
