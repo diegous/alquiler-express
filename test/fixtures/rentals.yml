@@ -33,3 +33,55 @@ beach_house_expiring_rental:
   property: living_property_beach_house
   total_cost: 900
   accepted_at: <%= Time.zone.parse("2025-06-01 17:00") %>
+
+dates_selected_rental:
+  start: <%= Time.zone.parse("2025-10-01") %>
+  end: <%= Time.zone.parse("2025-10-03") %>
+  status: dates_selected
+  owner: user_four
+  property: living_property_beach_house
+  total_cost: 600
+
+requested_rental:
+  start: <%= Time.zone.parse("2025-10-03") %>
+  end: <%= Time.zone.parse("2025-10-05") %>
+  status: requested
+  owner: user_four
+  property: living_property_beach_house
+  total_cost: 600
+
+accepted_rental:
+  start: <%= Time.zone.parse("2025-10-05") %>
+  end: <%= Time.zone.parse("2025-10-07") %>
+  status: accepted
+  owner: user_four
+  property: living_property_beach_house
+  total_cost: 600
+  accepted_at: <%= Time.current %>
+
+paid_rental:
+  start: <%= Time.zone.parse("2025-10-07") %>
+  end: <%= Time.zone.parse("2025-10-09") %>
+  status: paid
+  owner: user_four
+  property: living_property_beach_house
+  total_cost: 600
+  accepted_at: <%= Time.zone.parse("2025-06-01 17:00") %>
+
+started_rental:
+  start: <%= Time.zone.parse("2025-10-09") %>
+  end: <%= Time.zone.parse("2025-10-11") %>
+  status: started
+  owner: user_four
+  property: living_property_beach_house
+  total_cost: 600
+  accepted_at: <%= Time.zone.parse("2025-06-01 17:00") %>
+
+finished_rental:
+  start: <%= Time.zone.parse("2025-02-09") %>
+  end: <%= Time.zone.parse("2025-02-11") %>
+  status: finished
+  owner: user_four
+  property: living_property_beach_house
+  total_cost: 600
+  accepted_at: <%= Time.zone.parse("2025-01-01 17:00") %>

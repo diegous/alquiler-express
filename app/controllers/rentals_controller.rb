@@ -37,6 +37,12 @@ class RentalsController < ApplicationController
     end
   end
 
+  def cancel
+    @rental = Current.user.owned_rentals.find(params[:id])
+    @rental.canceled!
+    redirect_to rental_path(@rental), notice: "Reserva cancelada"
+  end
+
   private
   def set_property
       @property ||= Property.find(params[:property_id])
