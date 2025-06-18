@@ -31,6 +31,10 @@ es:
     pm: pm
   activerecord:
     enums:
+      gender:
+        female: femenino
+        male: masculino
+        other: otro
       living_property:
         house: casa
         apartment: departamento
@@ -77,3 +81,6 @@ es:
   CommercialProperty: Local
   Garage: Cochera
   LivingProperty: Vivienda
+  female: femenino
+  male: masculino
+  other: otro
