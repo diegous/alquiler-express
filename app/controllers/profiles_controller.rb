@@ -1,6 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :require_login
 
+  def show
+    @user = Current.user
+  end
+
   def edit
     @user = Current.user
   end
@@ -8,7 +12,7 @@ class ProfilesController < ApplicationController
   def update
     @user = Current.user
     if @user.update(profile_params)
-      redirect_to root_path, notice: "Perfil actualizado correctamente"
+      redirect_to profile_path(@user), notice: "Perfil actualizado correctamente"
     else
       render :edit
     end

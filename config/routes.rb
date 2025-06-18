@@ -37,7 +37,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, only: %i[edit update], controller: "profiles"
+  resource :profile, only: %i[show edit update], controller: "profiles" do
+    resource :password, only: %i[edit update], controller: "profiles/passwords"
+  end
 
   namespace :admin do
     resources :living_properties, except: :show
