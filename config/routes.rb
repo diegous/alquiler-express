@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, only: %i[show edit update], controller: "profiles" do
+  resource :profile, only: %i[show edit update] do
     resource :password, only: %i[edit update], controller: "profiles/passwords"
   end
 
