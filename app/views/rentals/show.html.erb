@@ -18,6 +18,14 @@
         <p class="font-medium text-[#333]">
           <%= link_to @rental.property.name, property_show_path(@rental.property) %>
         </p>
+
+        <p class="text-[#666]">
+          Estado:
+          <span class="font-medium text-[#333]">
+            <%= enum_t(@rental.status, key: :rental).humanize %>
+          </span>
+        </p>
+
         <p class="text-[#666]">
           Checkin:
           <span class="font-medium text-[#333]">
@@ -59,11 +67,20 @@
         </div>
       <% end %>
 
-      <% if Current.user == @rental.owner && @rental.dates_selected?%>
+      <% if @rental.dates_selected? %>
         <% if @rental.needs_guest?%>
           <%= link_to "Agregar huésped", find_by_dni_rental_guest_path(@rental), class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
         <% end %>
         <%= button_to "Enviar solicitud", send_request_rental_path(@rental), method: :post, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600" %>
+      <% end %>
+
+      <% if @rental.dates_selected? || @rental.requested? || @rental.accepted? || @rental.paid? %>
+        <%= button_to(
+              "Cancelar reserva",
+              cancel_rental_path(@rental),
+              method: :patch,
+              data: { controller: "confirmation", action: "click->confirmation#alert" },
+              class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600") %>
       <% end %>
     </div>
   </div>

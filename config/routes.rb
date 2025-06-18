@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     end
     member do
       post :send_request
+      patch :cancel
     end
   end
 
