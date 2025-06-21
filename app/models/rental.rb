@@ -6,7 +6,7 @@ class Rental < ApplicationRecord
   validates :owner, :property, :start, :end, :status, :total_cost, presence: true
 
   validate :no_colliding_rentals
-  validate :valid_start_and_end
+  validate :valid_start_and_end, on: :create
 
   before_create :assign_total_cost
 
