@@ -57,6 +57,10 @@ class Rental < ApplicationRecord
     }
   end
 
+  def cancelable?
+    dates_selected? || requested? || accepted? || paid?
+  end
+
   private
 
   def max_user_amount
