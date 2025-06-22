@@ -17,7 +17,7 @@ class Property < ApplicationRecord
   end
 
   def has_active_rentals?
-    rentals.where.not(status: :dates_selected).exists?
+    rentals.where.not(status: [ :dates_selected, :finished, :canceled ]).exists?
   end
 
   private
