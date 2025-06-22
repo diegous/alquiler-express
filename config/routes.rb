@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     resources :garages, except: :show do
       member { patch :enable }
     end
-    resources :rentals, only: %i[index show] do
+    resources :rentals, only: %i[index show new create] do
       member do
         patch :accept
       end

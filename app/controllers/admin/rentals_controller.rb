@@ -15,6 +15,22 @@ class Admin::RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
   end
 
+  def new
+    property = Property.find(params[:property_id])
+    @rental = property.rentals.new
+  end
+
+  def create
+    @rental = Rental.new(rental_params)
+    @rental.status = :accepted
+
+    if @rental.save
+      redirect_to admin_rental_path(@rental)
+    else
+      render :new
+    end
+  end
+
   def accept
     @rental = Rental.find(params[:id])
     @rental.accepted_at = Time.current
@@ -35,6 +51,10 @@ class Admin::RentalsController < ApplicationController
   end
 
   private
+
+  def rental_params
+    params.require(:rental).permit(:start, :end, :property_id, :owner_id)
+  end
 
   # Hackish way of canceling rentals without a cron job
   def cancel_unpaid_rentals

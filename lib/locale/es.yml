@@ -52,6 +52,7 @@ es:
       confirmation: "no coincide con %{attribute}"
       greater_than: "debe ser mayor a %{count}"
       record_invalid: "La validación falló: %{errors}'"
+      required: no puede estar en blanco
       less_than: "debe ser menor a %{count}"
       not_a_number: no es un número
       taken: ya está en uso
