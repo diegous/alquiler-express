@@ -85,3 +85,12 @@ finished_rental:
   property: living_property_beach_house
   total_cost: 600
   accepted_at: <%= Time.zone.parse("2025-02-01 17:00") %>
+
+colliding_garage_with_roof_rental:
+  start: <%= Time.zone.parse("2026-02-18 09:00") %>
+  end: <%= Time.zone.parse("2026-02-18 13:00") %>
+  status: paid
+  owner: user_two_mariana_ventura
+  property: garage_with_roof
+  total_cost: 550.84
+  accepted_at: <%= Time.zone.parse("2025-02-01 17:00") %>
