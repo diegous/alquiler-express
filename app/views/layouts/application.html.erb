@@ -36,7 +36,15 @@
           </div>
         <% end %>
         <div class="flex gap-4">
-          <% if !Current.user&.admin? %>
+          <% if Current.user&.admin? %>
+            <%= link_to "Viviendas", admin_living_properties_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
+
+            <%= link_to "Locales", admin_commercial_properties_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
+
+            <%= link_to "Cocheras", admin_garages_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
+
+            <%= link_to "Empleados", admin_employees_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
+          <% else %>
             <%= link_to living_properties_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
               <%= render 'svgs/living_property' %>
               Viviendas
@@ -71,19 +79,6 @@
           <% end %>
         </div>
       </header>
-
-      <% if Current.user&.admin? %>
-        <nav class="bg-white shadow-sm px-6 py-3 flex gap-4 justify-center">
-          <%= link_to 'Administrar Viviendas', admin_living_properties_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
-
-          <%= link_to 'Administrar Locales', admin_commercial_properties_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
-
-          <%= link_to 'Administrar Cocheras', admin_garages_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
-
-          <%= link_to 'Administrar Empleados', admin_employees_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
-        </nav>
-      <% end %>
-
 
       <%= yield %>
     </div>
