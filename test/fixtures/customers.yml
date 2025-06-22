@@ -1,44 +1,44 @@
 <% password_digest = BCrypt::Password.create("password") %>
 
-user_one:
+user_one_franco_milazzo:
   type: Customer
   email_address: user@example.com
   password_digest: <%= password_digest %>
-  last_name: Perez
-  first_name: Juan
+  last_name: Milazzo
+  first_name: Franco
   phone: 2215987456
   gender: male
   dni: 1122334
   dob: 1970-12-23
 
-user_two:
+user_two_mariana_ventura:
   type: Customer
   email_address: user2@example.com
   password_digest: <%= password_digest %>
-  last_name: Gomez
-  first_name: Ana
+  last_name: Ventura
+  first_name: Mariana
   phone: 2215571523
   gender: female
   dni: 99887755
   dob: 2000-03-15
 
-user_three:
+user_three_jose_feller:
   type: Customer
   email_address: user3@example.com
   password_digest: <%= password_digest %>
-  last_name: Ferro
-  first_name: Alex
+  last_name: Feller
+  first_name: José
   phone: 2215684759
   gender: other
   dni: 1155998
   dob: 1995-04-30
 
-user_four:
+user_four_emilio_ravenna:
   type: Customer
   email_address: user4@example.com
   password_digest: <%= password_digest %>
-  last_name: Górgory
-  first_name: Rafa
+  last_name: Ravenna
+  first_name: Emilio
   phone: 2215684759
   gender: male
   dni: 3216547
