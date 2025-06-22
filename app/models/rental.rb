@@ -3,7 +3,7 @@ class Rental < ApplicationRecord
   belongs_to :property
   has_and_belongs_to_many :users
 
-  validates :owner, :property, :start, :end, :status, :total_cost, presence: true
+  validates :owner_id, :property_id, :start, :end, :status, :total_cost, presence: true
 
   validate :no_colliding_rentals
   validate :valid_start_and_end, on: :create
