@@ -17,8 +17,7 @@ class RentalsController < ApplicationController
   def create
     @rental = @property.rentals.new(property_rental_params)
     @rental.owner = Current.user
-
-    @rental.status = :dates_selected
+    @rental.status = :requested unless @property.is_a?(LivingProperty)
 
     if @rental.save
       redirect_to rental_path(@rental)
