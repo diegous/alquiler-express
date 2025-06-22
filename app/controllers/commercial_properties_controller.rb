@@ -2,7 +2,7 @@ class CommercialPropertiesController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
 
   def index
-    @properties = CommercialPropertySearch.new.filter(CommercialProperty.all, params:)
+    @properties = CommercialPropertySearch.new.filter(CommercialProperty.where(enabled: true), params:)
   end
 
   def show

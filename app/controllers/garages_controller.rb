@@ -2,7 +2,7 @@ class GaragesController < ApplicationController
   allow_unauthenticated_access only: %i[ index show ]
 
   def index
-    @garages = GarageSearch.new.filter(Garage.all, params: params)
+    @garages = GarageSearch.new.filter(Garage.where(enabled: true), params: params)
   end
 
   def show

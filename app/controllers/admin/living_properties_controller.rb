@@ -33,6 +33,22 @@ class Admin::LivingPropertiesController < ApplicationController
     end
   end
 
+  def destroy
+    @property = LivingProperty.find(params[:id])
+    if @property.has_active_rentals?
+      redirect_to admin_living_properties_path, notice: "La propiedad #{@property.name} tiene reservas asociadas"
+    else
+      @property.update!(enabled: false)
+      redirect_to admin_living_properties_path, notice: "Propiedad #{@property.name} desactivada"
+    end
+  end
+
+  def enable
+    @property = LivingProperty.find(params[:id])
+    @property.update!(enabled: true)
+    redirect_to admin_living_properties_path, notice: "Propiedad #{@property.name} activada"
+  end
+
   private
 
   def living_property_params

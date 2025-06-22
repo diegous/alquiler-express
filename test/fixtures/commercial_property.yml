@@ -5,6 +5,7 @@ commercial_space_1:
   city: Punta Lara
   width: 2
   length: 3.5
+  enabled: true
   description: |
     Local ubicado en una zona turística de la playa, 
     ideal para negocios de souvenirs o actividades acuáticas.
@@ -17,6 +18,7 @@ commercial_space_2:
   city: La Plata
   width: 2.5
   length: 4
+  enabled: true
   description: |
     Local ubicado en un barrio residencial, 
     perfecto para negocios de proximidad como panaderías o farmacias.

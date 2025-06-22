@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_02_174958) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_22_192359) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_02_174958) do
     t.float "price"
     t.text "description"
     t.integer "living_property_type"
+    t.boolean "enabled"
   end
 
   create_table "rentals", force: :cascade do |t|

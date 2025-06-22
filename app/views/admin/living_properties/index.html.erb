@@ -42,6 +42,17 @@
               <%= link_to living_property_path(property) , class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-blue-500 text-white hover:bg-blue-600" do %>
                 Ver
               <% end %>
+              <% if property.enabled? %>
+                <%= button_to admin_living_property_path(property), method: :delete, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-red-500 text-white hover:bg-red-600" do %>
+                  <%= render 'svgs/trashcan' %>
+                  Desactivar
+                <% end %>
+              <% else %>
+                <%= button_to enable_admin_living_property_path(property), method: :patch, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-green-600 text-white hover:bg-green-700" do %>
+                  <%= render 'svgs/trashcan' %>
+                  Activar
+                <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>

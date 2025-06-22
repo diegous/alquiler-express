@@ -33,6 +33,22 @@ class Admin::GaragesController < ApplicationController
     end
   end
 
+  def destroy
+    @garage = Garage.find(params[:id])
+    if @garage.has_active_rentals?
+      redirect_to admin_garages_path, notice: "La propiedad #{@garage.name} tiene reservas asociadas"
+    else
+      @garage.update!(enabled: false)
+      redirect_to admin_garages_path, notice: "Propiedad #{@garage.name} desactivada"
+    end
+  end
+
+  def enable
+    @garage = Garage.find(params[:id])
+    @garage.update!(enabled: true)
+    redirect_to admin_garages_path, notice: "Propiedad #{@garage.name} activada"
+  end
+
   private
 
   def garage_params

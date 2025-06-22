@@ -16,6 +16,10 @@ class Property < ApplicationRecord
     false
   end
 
+  def has_active_rentals?
+    rentals.where.not(status: :dates_selected).exists?
+  end
+
   private
 
   def must_have_a_picture

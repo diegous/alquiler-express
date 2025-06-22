@@ -43,9 +43,15 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :living_properties, except: :show
-    resources :commercial_properties, except: :show
-    resources :garages, except: :show
+    resources :living_properties, except: :show do
+      member { patch :enable }
+    end
+    resources :commercial_properties, except: :show do
+      member { patch :enable }
+    end
+    resources :garages, except: :show do
+      member { patch :enable }
+    end
     resources :rentals, only: %i[index show] do
       member do
         patch :accept

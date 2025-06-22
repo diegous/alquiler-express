@@ -6,6 +6,7 @@ living_property_beach_house:
   bedrooms: 2
   guest_capacity: 5
   living_property_type: house
+  enabled: true
   description: |
     Cómoda casa con jacuzzi, aire acondicionado y TV inteligente.
 
@@ -25,6 +26,7 @@ living_property_near_park:
   bedrooms: 1
   guest_capacity: 2
   living_property_type: apartment
+  enabled: true
   description: |
     Relájese en este espacio tranquilo en una ubicación céntrica. El apartamento se encuentra cerca de la parada de Ponte Lungo del metro A. Un paseo de 10 minutos y estarás en San Giovanni. Cerca de todos los servicios: metro, autobús, tren desde/hacia el aeropuerto, supermercados, restaurantes.
 
