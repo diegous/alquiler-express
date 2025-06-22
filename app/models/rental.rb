@@ -81,7 +81,9 @@ class Rental < ApplicationRecord
   end
 
   def no_colliding_rentals
-    return unless %i[dates_selected requested accepted].include? status
+    # This check should only be one if a reservation is created  (initial states
+    # 'dates_selecte' and 'requestd) or when an employee accepts a request.
+    return unless (dates_selected? || requested? || accepted?)
 
     rentals = property
       .rentals
