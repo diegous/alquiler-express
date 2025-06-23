@@ -44,6 +44,8 @@
             <%= link_to "Cocheras", admin_garages_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
 
             <%= link_to "Empleados", admin_employees_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
+
+            <%= link_to "Reportes", admin_reports_path, class: 'font-medium flex items-center gap-2 px-4 py-2 rounded-full text-[#144B7F] hover:bg-[#EFF6FB] transition' %>
           <% else %>
             <%= link_to living_properties_path, class: 'flex items-center gap-2 text-sm font-medium transition-colors bg-white text-[#144B7F] hover:text-[#3B6FA0] px-6 py-2' do %>
               <%= render 'svgs/living_property' %>

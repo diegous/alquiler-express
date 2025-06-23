@@ -60,6 +60,11 @@ Rails.application.routes.draw do
     resources :employees do
       member { patch :enable }
     end
+
+    resources :reports, only: :index
+    namespace :reports do
+      get :average_duration
+    end
   end
 
   resource :two_fa, only: %i[new create]
