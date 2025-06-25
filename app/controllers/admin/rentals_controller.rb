@@ -25,7 +25,7 @@ class Admin::RentalsController < ApplicationController
     @rental.status = :accepted
 
     if @rental.save
-      redirect_to admin_rental_path(@rental)
+      redirect_to admin_rental_path(@rental), flash: { success: "Reserva creada exitosamente" }
     else
       render :new
     end
