@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     resources :reports, only: :index
     namespace :reports do
       get :average_duration
+      get :rentals_by_weekday
     end
   end
 

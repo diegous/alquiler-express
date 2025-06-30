@@ -31,7 +31,7 @@ class AverageRentalDurationReport
   def rentals_for(property_class)
     Rental
       .joins(:property)
-      .where(status: %i[paid started finished canceled])
+      .where(status: %i[paid started finished])
       .where(property: { type: property_class.name })
   end
 end
