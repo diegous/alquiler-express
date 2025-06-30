@@ -97,10 +97,18 @@ class Rental < ApplicationRecord
       errors.add(:start, "Ya hay una reserva en esas fechas")
       errors.add(:end, "Ya hay una reserva en esas fechas")
 
-      start_string = I18n.l(rentals.first.start, format: :short)
-      end_string = I18n.l(rentals.first.end, format: :short)
+      rental_start = rentals.first.start
+      rental_end = rentals.first.end
 
-      errors.add(:base, "Hay una reserva de #{start_string} a #{end_string}")
+      if !property.is_a?(Garage)
+        rental_start = rental_start.to_date
+        rental_end = rental_end.to_date
+      end
+
+      start_string = I18n.l(rental_start, format: :short)
+      end_string = I18n.l(rental_end, format: :short)
+
+      errors.add(:base, "Hay una reserva de #{start_string} al #{end_string}")
     end
   end
 
