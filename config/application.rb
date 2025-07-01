@@ -25,5 +25,9 @@ module AlquilerExpress
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.time_zone = "Buenos Aires"
+
+    # Autoload /lib folder
+    config.autoload_paths << Rails.root.join('lib', 'modules')
+    config.eager_load_paths << Rails.root.join('lib', 'modules')
   end
 end

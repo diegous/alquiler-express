@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_22_192359) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_01_230652) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_22_192359) do
   create_table "guests", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "rental_id", null: false
+    t.string "card_owner"
+    t.string "card_number", limit: 16
+    t.string "card_cvc", limit: 3
+    t.integer "card_exp_month"
+    t.integer "card_exp_year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rental_id"], name: "index_payments_on_rental_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -124,6 +136,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_22_192359) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "payments", "rentals"
   add_foreign_key "rentals", "properties"
   add_foreign_key "rentals", "users", column: "owner_id"
   add_foreign_key "rentals_users", "rentals"

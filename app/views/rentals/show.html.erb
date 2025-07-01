@@ -82,6 +82,13 @@
               data: { controller: "confirmation", action: "click->confirmation#alert" },
               class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600") %>
       <% end %>
+
+      <% if @rental.accepted? %>
+        <%= link_to(
+              "Pagar reserva",
+              new_rental_payment_path(@rental),
+              class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600") %>
+      <% end %>
     </div>
   </div>
 </main>

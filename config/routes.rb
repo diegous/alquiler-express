@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :rentals, only: %i[index show] do
+    resource :payment, only: %i[new create]
     resource :guest, only: %i[new create destroy] do
       member do
         get :find_by_dni

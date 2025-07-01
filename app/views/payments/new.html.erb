@@ -1,0 +1,74 @@
+<main class="max-w-4xl mx-auto px-6 py-10">
+  <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
+
+    <%= link_to root_path do %>
+      <button class="inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors shadow h-9 py-2 bg-[#FF6C1E] text-white rounded-2xl px-4 hover:bg-orange-600 my-3">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+        </svg>
+      </button>
+    <% end %>
+
+    <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Pagar reserva</h2>
+
+    <% if @charge_error.present? %>
+      <div class="bg-red-50 border-red-400 font-bold text-red-700">
+        <p>Hubo un error: <%= @charge_error %></p>
+        <p>Por favor intente con otra tarjeta o contáctese con su banco.</p>
+      </div>
+    <% end %>
+
+    <%= form_with model: @payment, url: rental_payment_path(@rental) do |form| %>
+      <div class="bg-gradient-to-br from-[#b1cafc] to-[#c7d9fc] from-[#144B7F]--- to-[#1E90FF]--- rounded-2xl shadow-xl p-8 space-y-6">
+        <div class="space-y-2">
+          <%= form.label :card_owner, "Titular de la tarjeta", class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
+          <%= form.text_field :card_owner, class: "flex h-10 w-full rounded-md px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm bg-white text-black" %>
+        </div>
+
+        <div class="space-y-2" data-controller="card">
+          <%= form.label :card_number, "Número de tarjeta", class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
+          <%= form.text_field :card_number,
+            "data-card-target": "cardNumber",
+            "data-action": "input->card#format",
+            class: "flex h-10 w-full rounded-md px-3 py-2 ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-sm bg-white text-black" %>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <%= form.label :card_exp_month, "Vencimiento", class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
+
+            <div class="flex gap-2">
+              <div class="w-full">
+                <%
+                  month_options = (1..12).map { |n| [n, n] }
+                %>
+                <%= form.select(
+                      :card_exp_month,
+                      month_options,
+                      { include_blank: "Mes" },
+                      class: "bg-white h-10 text-black px-4 py-2 rounded-md w-full") %>
+              </div>
+
+              <div class="w-full">
+                <%= form.select(
+                      :card_exp_year,
+                      (2025..2035).to_a,
+                      { include_blank: "Año" },
+                      class: "bg-white h-10 text-black px-4 py-2 rounded-md w-full") %>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <%= form.label :card_cvc, "CVC", class: "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" %>
+            <%= form.text_field :card_cvc, class: "flex h-10 w-full rounded-md px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-white text-black" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <%= form.submit 'Pagar', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-md px-6' %>
+      </div>
+    <% end %>
+  </div>
+</main>
