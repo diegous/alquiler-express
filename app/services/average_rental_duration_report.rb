@@ -1,4 +1,4 @@
-class AverageRentalDurationReport
+class AverageRentalDurationReport < BaseReport
   def call
     {
       LivingProperty => data_for(LivingProperty, time_unit: :day),
@@ -26,12 +26,5 @@ class AverageRentalDurationReport
       total_duration: total_duration,
       average_duration: average_duration
     }
-  end
-
-  def rentals_for(property_class)
-    Rental
-      .joins(:property)
-      .where(status: %i[paid started finished])
-      .where(property: { type: property_class.name })
   end
 end

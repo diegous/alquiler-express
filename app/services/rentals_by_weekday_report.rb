@@ -1,12 +1,4 @@
-class RentalsByWeekdayReport
-  def call
-    {
-      LivingProperty => data_for(LivingProperty),
-      CommercialProperty => data_for(CommercialProperty),
-      Garage => data_for(Garage)
-    }
-  end
-
+class RentalsByWeekdayReport < BaseReport
   private
 
   def data_for(property_class)
@@ -23,12 +15,5 @@ class RentalsByWeekdayReport
       rentals_amount: rentals.count,
       rentals_weekday_data: weekdays
     }
-  end
-
-  def rentals_for(property_class)
-    Rental
-      .joins(:property)
-      .where(status: %i[paid started finished])
-      .where(property: { type: property_class.name })
   end
 end
