@@ -11,4 +11,8 @@ class Admin::ReportsController < ApplicationController
   def rentals_by_weekday
     @report_data = RentalsByWeekdayReport.new.call
   end
+
+  def earnings_by_property_type
+    @report_data = EarningsByPropertyType.new.call
+  end
 end

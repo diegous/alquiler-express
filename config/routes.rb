@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     namespace :reports do
       get :average_duration
       get :rentals_by_weekday
+      get :earnings_by_property_type
     end
   end
 
