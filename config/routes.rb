@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :rentals, only: %i[index show] do
+    resource :payment, only: %i[new create]
     resource :guest, only: %i[new create destroy] do
       member do
         get :find_by_dni
@@ -66,6 +67,8 @@ Rails.application.routes.draw do
     resources :reports, only: :index
     namespace :reports do
       get :average_duration
+      get :rentals_by_weekday
+      get :earnings_by_property_type
     end
   end
 

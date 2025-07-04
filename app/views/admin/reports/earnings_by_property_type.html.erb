@@ -1,0 +1,46 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<main class="max-w-4xl mx-auto px-6 py-10">
+  <div class="rounded-2xl shadow bg-white overflow-hidden" style="opacity: 1; transform: none;">
+    <div class="p-6 space-y-8">
+      <div class="space-y-2">
+        <h2 class="text-3xl font-bold text-[#144B7F] mb-5">
+          Reportes
+        </h2>
+
+        <h3 class="text-xl font-semibold text-[#144B7F]">
+          Ganancias por tipo de inmueble
+        </h3>
+
+        <div class="mt-6">
+          <div class="max-w-sm">
+            <canvas id="earnings-chart"></canvas>
+          </div>
+
+          <script>
+            ctx = document.getElementById('earnings-chart');
+
+            new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: <%= raw(@report_data.keys.map { |klass| t(klass) }) %>,
+                datasets: [{
+                  label: '# de reservas',
+                  data: <%= @report_data.values %>,
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

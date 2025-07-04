@@ -1,0 +1,55 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<main class="max-w-4xl mx-auto px-6 py-10">
+  <div class="rounded-2xl shadow bg-white overflow-hidden" style="opacity: 1; transform: none;">
+    <div class="p-6 space-y-8">
+      <div class="space-y-2">
+        <h2 class="text-3xl font-bold text-[#144B7F] mb-5">
+          Reportes
+        </h2>
+
+        <h3 class="text-xl font-semibold text-[#144B7F]">
+          Alquileres por día de la semana
+        </h3>
+
+
+        <% @report_data.each do |(klass, data)| %>
+          <div class="mt-6">
+            <h4 class="text-l font-semibold text-[#144B7F]"><%= t klass %></h4>
+            <% if data[:rentals_amount] <= 0 %>
+              <p class="text-[#666]">Este tipo de propiedad no tuvo reservas</p>
+            <% else %>
+
+            <div class="max-w-sm">
+              <canvas id="<%= klass %>-chart"></canvas>
+            </div>
+
+            <script>
+              ctx = document.getElementById('<%= klass %>-chart');
+
+              new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                  datasets: [{
+                    label: '# de reservas',
+                    data: <%= data[:rentals_weekday_data] %>,
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+            </script>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
