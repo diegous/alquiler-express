@@ -57,10 +57,12 @@ class Admin::RentalsController < ApplicationController
 
   def cancel
     @rental = Rental.find(params[:id])
-    reason = params[:reason]
-    @rental.canceled!
+    @rental.cancel_reason = params[:reason]
+    if @rental.cancelable?
+      @rental.canceled!
+    end
 
-    RentalMailer.with(rental: @rental, reason: reason).cancel_rental.deliver_now
+    CustomerMailer.with(rental: @rental).cancel_rental.deliver_now
 
     redirect_to admin_rental_path(@rental), notice: "Renta cancelada"
   end
