@@ -58,7 +58,7 @@ class Rental < ApplicationRecord
   end
 
   def cancelable?
-    dates_selected? || requested? || accepted? || paid?
+    dates_selected? || requested? || accepted? || paid? || started?
   end
 
   private
@@ -83,7 +83,7 @@ class Rental < ApplicationRecord
   def no_colliding_rentals
     # This check should only be one if a reservation is created  (initial states
     # 'dates_selecte' and 'requestd) or when an employee accepts a request.
-    return unless (dates_selected? || requested? || accepted?)
+    return unless dates_selected? || requested? || accepted?
 
     rentals = property
       .rentals

@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     resources :rentals, only: %i[index show new create] do
       member do
         patch :accept
+        get :cancel_form
+        patch :cancel
       end
     end
     resources :employees do

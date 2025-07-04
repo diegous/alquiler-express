@@ -44,9 +44,9 @@
           </p>
         </div>
         <%= link_to "Ver detalles", admin_rental_path(rental), class: 'text-sm font-medium transition-colors shadow bg-[#144B7F] text-white hover:bg-[#3B6FA0] rounded-xl px-6 py-2' %>
-        <button
-          disabled="disabled"
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-9 bg-red-500 text-white hover:bg-red-600 rounded-xl px-4 py-2">Cancel</button>
+        <% if rental.cancelable? %>
+          <%= link_to "Cancelar", cancel_form_admin_rental_path(rental), class: 'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-9 bg-red-500 text-white hover:bg-red-600 rounded-xl px-4 py-2' %>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -51,6 +51,20 @@ class Admin::RentalsController < ApplicationController
     redirect_to admin_rental_path(@rental)
   end
 
+  def cancel_form
+    @rental = Rental.find(params[:id])
+  end
+
+  def cancel
+    @rental = Rental.find(params[:id])
+    reason = params[:reason]
+    @rental.canceled!
+
+    RentalMailer.with(rental: @rental, reason: reason).cancel_rental.deliver_now
+
+    redirect_to admin_rental_path(@rental), notice: "Renta cancelada"
+  end
+
   private
 
   def rental_params

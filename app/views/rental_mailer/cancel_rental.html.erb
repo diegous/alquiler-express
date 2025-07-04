@@ -1,0 +1,8 @@
+<h1>Reserva cancelada</h1>
+<p>
+  Su reserva <%= link_to "##{@rental.id}", rental_url(@rental) %> ha sido cacelada.
+</p>
+<h2>Motivo:</h2>
+<p>
+    <%= @reason %>
+</p>
