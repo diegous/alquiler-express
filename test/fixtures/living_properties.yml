@@ -31,3 +31,17 @@ living_property_near_park:
     Relájese en este espacio tranquilo en una ubicación céntrica. El apartamento se encuentra cerca de la parada de Ponte Lungo del metro A. Un paseo de 10 minutos y estarás en San Giovanni. Cerca de todos los servicios: metro, autobús, tren desde/hacia el aeropuerto, supermercados, restaurantes.
 
     Acogedor y espacioso apartamento, listo para daros la bienvenida a vuestra estancia. Dos amplias habitaciones (dormitorio y sala de estar con sofá cama) pueden alojar cómodamente hasta 4 personas. La amplia entrada y el pasillo permiten acceder a una espaciosa cocina y al baño, donde encontrarás todos los electrodomésticos necesarios.
+
+living_property_in_city_center:
+  type: LivingProperty
+  name: Departamento en el centro
+  price: 600
+  city: La Plata
+  bedrooms: 2
+  guest_capacity: 2
+  living_property_type: apartment
+  enabled: true
+  description: |
+    Departamento de dos dormitorios en alquiler ubicado sobre calle 8 entre 47 y 48. Desarrollado en piso alto por ascensor con disposición al frente.
+
+    Posee cocina equipada con muebles sobre y bajo mesada con barra desayunadora, living comedor, dos dormitorios con placard empotrado y un baño completo con bañera. Amplio y luminoso, cuenta con balcón al frente. Cochera cubierta con capacidad para un vehículo.

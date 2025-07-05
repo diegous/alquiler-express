@@ -94,3 +94,23 @@ colliding_garage_with_roof_rental:
   property: garage_with_roof
   total_cost: 550.84
   accepted_at: <%= Time.zone.parse("2025-02-01 17:00") %>
+
+appartment_in_city_center_rental1:
+  start: <%= Time.zone.parse("2025-02-07") %>
+  end: <%= Time.zone.parse("2026-02-10") %>
+  status: finished
+  owner: user_four_emilio_ravenna
+  property: living_property_in_city_center
+  total_cost: 1800
+  users: [user_three_jose_feller]
+  accepted_at: <%= Time.zone.parse("2025-01-29 17:00") %>
+
+appartment_in_city_center_rental2:
+  start: <%= Time.zone.parse("2025-02-14") %>
+  end: <%= Time.zone.parse("2026-02-17") %>
+  status: finished
+  owner: user_four_emilio_ravenna
+  property: living_property_in_city_center
+  total_cost: 1800
+  users: [user_three_jose_feller]
+  accepted_at: <%= Time.zone.parse("2025-01-29 17:00") %>

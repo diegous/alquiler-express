@@ -3,6 +3,7 @@ beach_house_blob: <%= ActiveStorage::FixtureSet.blob filename: "beach_house.jpeg
 
 # Appartment
 appartment_near_park_blob: <%= ActiveStorage::FixtureSet.blob filename: "appartment_near_park.jpeg" %>
+appartment_in_city_center_blob: <%= ActiveStorage::FixtureSet.blob filename: "appartment_in_city_center.jpeg" %>
 
 # Garages
 garage_with_roof_blob: <%= ActiveStorage::FixtureSet.blob filename: "covered_garage.jpg" %>

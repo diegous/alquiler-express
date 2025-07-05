@@ -15,4 +15,8 @@ class Admin::ReportsController < ApplicationController
   def earnings_by_property_type
     @report_data = EarningsByPropertyType.new.call
   end
+
+  def average_occupation
+    @report_data = AverageOccupationReport.new.call
+  end
 end

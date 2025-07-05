@@ -10,6 +10,11 @@ appartment_near_park_picture:
   record: living_property_near_park (Property)
   blob: appartment_near_park_blob
 
+appartment_in_city_center:
+  name: pictures
+  record: living_property_in_city_center (Property)
+  blob: appartment_in_city_center_blob
+
 # Garages
 garage_with_roof_picture:
   name: pictures

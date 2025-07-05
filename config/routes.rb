@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       get :average_duration
       get :rentals_by_weekday
       get :earnings_by_property_type
+      get :average_occupation
     end
   end
 
