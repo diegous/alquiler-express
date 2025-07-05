@@ -74,7 +74,7 @@
       <%= form_with url: cancel_admin_rental_path(@rental), method: :patch do %>
         <div class="field">
           <%= label_tag :reason, "Motivo de cancelación:", class: 'block text-sm font-medium mb-1' %>
-          <%= text_area_tag :reason, nil, in: 1..100, class: 'w-full m-1 p-2 rounded border border-gray-300', rows: 4 %>
+          <%= text_area_tag :reason, nil, required: true, in: 1..100, class: 'w-full m-1 p-2 rounded border border-gray-300', rows: 4 %>
         </div>
 
         <%= submit_tag "Cancelar reserva", class: 'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow h-9 bg-red-500 text-white hover:bg-red-600 rounded-xl px-4 py-2' %>
