@@ -39,7 +39,7 @@ class RentalsController < ApplicationController
   def cancel
     @rental = Current.user.owned_rentals.find(params[:id])
 
-    if @rental.cancelable?
+    if @rental.cancellable?
       @rental.canceled!
       redirect_to rental_path(@rental), notice: "Reserva cancelada"
     else

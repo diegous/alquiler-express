@@ -58,7 +58,7 @@ class Admin::RentalsController < ApplicationController
   def cancel
     @rental = Rental.find(params[:id])
     @rental.cancel_reason = params[:reason]
-    if @rental.cancelable?
+    if @rental.cancellable?
       @rental.canceled!
     end
 

@@ -58,7 +58,7 @@ class Rental < ApplicationRecord
     }
   end
 
-  def cancelable?
+  def cancellable?
     dates_selected? || requested? || accepted? || paid? || started?
   end
 
