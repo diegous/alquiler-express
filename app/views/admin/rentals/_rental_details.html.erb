@@ -1,0 +1,43 @@
+<h2 class="text-3xl font-bold text-[#144B7F] mb-5">
+  Detalles de reserva #<%= rental.id %>
+</h2>
+<p class="font-medium text-[#333]">
+  <%= link_to rental.property.name, living_property_path(rental.property) %>
+</p>
+<p class="text-[#666]">
+  Checkin:
+  <span class="font-medium text-[#333]">
+    <%=l rental.start.to_date, format: :day %>
+  </span>
+</p>
+
+<p class="text-[#666]">
+  Checkout:
+  <span class="font-medium text-[#333]">
+    <%=l rental.end.to_date, format: :day %>
+  </span>
+</p>
+
+<p class="font-medium text-[#333] mt-4">
+  Solicitante: <%= rental.owner.first_name%> <%= rental.owner.last_name%>
+</p>
+<p class="text-[#666]">
+  DNI:
+  <span class="font-medium text-[#333]">
+    <%= rental.owner.dni %>
+  </span>
+</p>
+<p class="text-[#666]">
+  Email:
+  <span class="font-medium text-[#333]">
+    <%= rental.owner.email_address %>
+  </span>
+</p>
+<p class="text-[#666]">
+  Fecha de Nacimiento:
+  <span class="font-medium text-[#333]">
+    <%=l rental.owner.dob, format: :long %>
+  </span>
+</p>
+
+<p class="text-lg font-semibold text-[#FF6C1E]">Total: <%= number_to_currency rental.total_cost %></p>

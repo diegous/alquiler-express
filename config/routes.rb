@@ -62,6 +62,7 @@ Rails.application.routes.draw do
         patch :start
       end
     end
+    resource :maintenance_rental
     resources :employees do
       member { patch :enable }
     end

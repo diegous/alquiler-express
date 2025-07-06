@@ -18,7 +18,8 @@ class Rental < ApplicationRecord
     paid: 20,
     started: 30,
     finished: 40,
-    canceled: 100
+    canceled: 100,
+    maintenance: 120
   }
 
   def get_property
@@ -27,6 +28,7 @@ class Rental < ApplicationRecord
 
   def needs_guest?
     return false unless property.is_a?(LivingProperty)
+    return false if maintenance?
     users.count < property.guest_capacity
   end
 
@@ -72,6 +74,8 @@ class Rental < ApplicationRecord
   end
 
   def assign_total_cost
+    return 0 if maintenance?
+
     if property.is_a?(Garage)
       hours = (self.end - self.start) / 1.hour
       self.total_cost = property.price * hours
@@ -83,8 +87,9 @@ class Rental < ApplicationRecord
 
   def no_colliding_rentals
     # This check should only be one if a reservation is created  (initial states
-    # 'dates_selecte' and 'requestd) or when an employee accepts a request.
-    return unless dates_selected? || requested? || accepted?
+    # 'dates_selecte' and 'requestd), when an employee accepts a request, or
+    # when a maintenance rental is created.
+    return unless dates_selected? || requested? || accepted? || maintenance?
 
     rentals = property
       .rentals
