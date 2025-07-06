@@ -33,15 +33,17 @@
               <%= enum_t(rental.status, key: :rental).humanize %>
             </span>
           </p>
-          <p class="text-sm text-[#666]">
-            Huéspedes:
-            <span class="text-black font-medium">
-              <%= rental.users.count + 1 %>
-            </span>
-          </p>
-          <p class="text-sm font-semibold text-[#FF6C1E]">
-            Total: <%= number_to_currency rental.total_cost %>
-          </p>
+          <% unless rental.maintenance_related? %>
+            <p class="text-sm text-[#666]">
+              Huéspedes:
+              <span class="text-black font-medium">
+                <%= rental.users.count + 1 %>
+              </span>
+            </p>
+            <p class="text-sm font-semibold text-[#FF6C1E]">
+              Total: <%= number_to_currency rental.total_cost %>
+            </p>
+          <% end %>
         </div>
         <%= link_to "Ver detalles", admin_rental_path(rental), class: 'text-sm font-medium transition-colors shadow bg-[#144B7F] text-white hover:bg-[#3B6FA0] rounded-xl px-6 py-2' %>
         <% if rental.cancellable? %>

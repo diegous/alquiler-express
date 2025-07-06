@@ -47,6 +47,8 @@ es:
         started: en curso
         finished: finalizada
         canceled: cancelada
+        maintenance: mantenimiento
+        cancelled_maintenance: mantenimiento cancelado
   errors:
     messages:
       blank: no puede estar en blanco

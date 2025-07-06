@@ -19,7 +19,8 @@ class Rental < ApplicationRecord
     started: 30,
     finished: 40,
     canceled: 100,
-    maintenance: 120
+    maintenance: 120,
+    cancelled_maintenance: 140
   }
 
   def get_property
@@ -61,7 +62,11 @@ class Rental < ApplicationRecord
   end
 
   def cancellable?
-    dates_selected? || requested? || accepted? || paid? || started?
+    dates_selected? || requested? || accepted? || paid? || started? || maintenance?
+  end
+
+  def maintenance_related?
+    maintenance? || cancelled_maintenance?
   end
 
   private

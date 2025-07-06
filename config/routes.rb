@@ -62,7 +62,9 @@ Rails.application.routes.draw do
         patch :start
       end
     end
-    resource :maintenance_rental
+    resources :maintenance_rentals, only: %i[new create] do
+      member { patch :cancel }
+    end
     resources :employees do
       member { patch :enable }
     end

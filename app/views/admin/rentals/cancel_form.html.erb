@@ -15,13 +15,13 @@
         <h2 class="text-3xl font-bold text-[#144B7F] mb-5">
           ¿Estás seguro de cancelar la reserva #<%= @rental.id %>?
         </h2>
-        
+
         <% if @rental.paid? || @rental.started? %>
           <h3 class="text-3xl font-bold text-[#144B7F] mb-5">
             Se debe reembolsar <%= number_to_currency @rental.total_cost %>
           </h3>
         <% end %>
-        
+
         <p class="font-medium text-[#333]">
           <%= link_to @rental.property.name, living_property_path(@rental.property) %>
         </p>
@@ -71,7 +71,15 @@
         <p class="text-lg font-semibold text-[#FF6C1E]">Total: <%= number_to_currency @rental.total_cost %></p>
       </div>
 
-      <%= form_with url: cancel_admin_rental_path(@rental), method: :patch do %>
+      <%
+        cancel_url = if @rental.maintenance?
+          cancel_admin_maintenance_rental_path(@rental)
+        else
+          cancel_admin_rental_path(@rental)
+        end
+      %>
+
+      <%= form_with url: cancel_url, method: :patch do %>
         <div class="field">
           <%= label_tag :reason, "Motivo de cancelación:", class: 'block text-sm font-medium mb-1' %>
           <%= text_area_tag :reason, nil, required: true, in: 1..100, class: 'w-full m-1 p-2 rounded border border-gray-300', rows: 4 %>

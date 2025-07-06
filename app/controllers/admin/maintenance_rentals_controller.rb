@@ -17,16 +17,16 @@ class Admin::MaintenanceRentalsController < ApplicationController
     end
   end
 
-  def destroy
+  def cancel
     @rental = Rental.find(params[:id])
     @rental.cancel_reason = params[:reason]
-    if @rental.cancelable?
-      @rental.canceled!
+
+    if @rental.cancellable?
+      @rental.cancelled_maintenance!
+      redirect_to admin_rental_path(@rental), flash: { success: "Mantenimiento cancelado" }
+    else
+      redirect_to admin_rental_path(@rental), flash: { error: "Hubo un error" }
     end
-
-    CustomerMailer.with(rental: @rental).cancel_rental.deliver_now
-
-    redirect_to admin_rental_path(@rental), notice: "Renta cancelada"
   end
 
   private
