@@ -85,6 +85,22 @@ class Admin::RentalsController < ApplicationController
     redirect_to admin_rental_path(@rental), notice: "Reserva iniciada"
   end
 
+  def confirm_finish
+    @rental = Rental.find(params[:id])
+    if Time.current < @rental.end
+      redirect_to admin_rental_path(@rental), flash: { error: "La fecha actual es anterior al checkout" }
+    end
+  end
+
+  def finish
+    @rental = Rental.find(params[:id])
+    if @rental.started?
+      @rental.finished!
+    end
+
+    redirect_to admin_rental_path(@rental), notice: "Reserva finalizada"
+  end
+
   private
 
   def rental_params

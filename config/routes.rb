@@ -60,6 +60,8 @@ Rails.application.routes.draw do
         patch :cancel
         get :confirm_start
         patch :start
+        get :confirm_finish
+        patch :finish
       end
     end
     resources :maintenance_rentals, only: %i[new create] do
