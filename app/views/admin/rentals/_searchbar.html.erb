@@ -1,0 +1,23 @@
+<section class="px-6 py-6 max-w-6xl mx-auto">
+  <%= form_with url: admin_rentals_path, method: :get do |form| %>
+    <div class="flex flex-row gap-2 bg-white rounded-2xl shadow-md p-4 items-center">
+      <%
+        translated_options = Rental
+          .statuses
+          .keys
+          .map { |type| [enum_t(type, key: :rental).capitalize, type] }
+        select_options = [['Todo', nil]] + translated_options
+      %>
+      <%= form.select(
+        :status,
+        options_for_select(select_options, selected: params[:status]),
+        {},
+        class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-full px-4 border border-gray-300 rounded-xl'
+      )%>
+
+      <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600">
+        Filtrar
+      </button>
+    </div>
+  <% end %>
+</section>

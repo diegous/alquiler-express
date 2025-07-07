@@ -6,6 +6,8 @@ class Admin::RentalsController < ApplicationController
 
     @rentals = if params[:requested] == "true"
       Rental.requested
+    elsif params[:status].present?
+      Rental.not_requested.where(status: params[:status])
     else
       Rental.not_requested
     end

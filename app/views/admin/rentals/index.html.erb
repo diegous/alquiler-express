@@ -1,10 +1,12 @@
 <main class="max-w-5xl mx-auto px-6 py-10 space-y-6">
+  <%= render 'searchbar' %>
+
   <% if @rentals.empty? %>
     <div class="w-full text-center">
       No se encontraron reservas
     </div>
   <% end %>
-  <% @rentals.each do |rental|%>
+  <% @rentals.each do |rental| %>
     <div class="rounded-2xl shadow bg-white overflow-hidden">
       <div class="p-4 flex items-center gap-6">
         <%= image_tag rails_blob_path(rental.property.pictures.first, disposition: "attachment"), class: 'w-24 h-24 object-cover rounded-xl' %>
