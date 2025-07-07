@@ -22,7 +22,7 @@
 
       <div class="grid grid-cols-2 gap-4 mt-6">
         <div>
-          <%= form.label :start, 'Fecha de checkin', class: 'block text-sm font-medium mb-1' %>
+          <%= form.label :start, 'Inicio', class: 'block text-sm font-medium mb-1' %>
           <% if @rental.property.is_a? Garage %>
             <%=
               form.datetime_field(
@@ -37,7 +37,7 @@
           <% end %>
         </div>
         <div>
-          <%= form.label :end, 'Fecha de checkout', class: 'block text-sm font-medium mb-1' %>
+          <%= form.label :end, 'Fin', class: 'block text-sm font-medium mb-1' %>
           <% if @rental.property.is_a? Garage %>
             <%=
               form.datetime_field(
