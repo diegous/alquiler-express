@@ -64,7 +64,7 @@ class Admin::RentalsController < ApplicationController
 
     CustomerMailer.with(rental: @rental).cancel_rental.deliver_now
 
-    redirect_to admin_rental_path(@rental), notice: "Renta cancelada"
+    redirect_to admin_rental_path(@rental), notice: "Reserva cancelada"
   end
 
   def confirm_start
@@ -80,7 +80,7 @@ class Admin::RentalsController < ApplicationController
       @rental.started!
     end
 
-    redirect_to admin_rental_path(@rental), notice: "Renta iniciada"
+    redirect_to admin_rental_path(@rental), notice: "Reserva iniciada"
   end
 
   private
