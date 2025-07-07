@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :properties, only: [] do
     resources :rentals, only: %i[index new create]
-    resource :review, only: %i[new create]
+    resources :reviews, only: %i[new create destroy]
   end
 
   resources :rentals, only: %i[index show] do

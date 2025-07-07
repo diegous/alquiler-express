@@ -2,7 +2,7 @@
    <div class="bg-white rounded-2xl p-8 space-y-5 shadow-xl ">
       <h2 class="text-2xl font-semibold text-[#144B7F] mb-4">Nueva reseña</h2>
 
-      <%= form_with model: @review, url: property_review_path(@review.property) do |form| %>
+      <%= form_with model: @review, url: property_reviews_path(@review.property) do |form| %>
         <div class="grid grid-cols-1 gap-5">
           <div>
             <%= form.label :message, 'Reseña', class: 'block text-sm font-medium mb-1' %>

@@ -10,10 +10,18 @@ class ReviewsController < ApplicationController
     @review.user = Current.user
 
     if @review.save
-      redirect_to property, notice: "Reseña creada con éxito"
+      redirect_to property, success: "Reseña creada con éxito"
     else
       render :new
     end
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    property = review.property
+    review.destroy
+
+    redirect_to property, flash: { success: "Reseña eliminada con éxito" }
   end
 
   private

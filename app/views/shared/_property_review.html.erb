@@ -9,6 +9,11 @@
       <div class="mt-6">
         <strong><%= review.user.full_name %></strong>
         <span class="text-xs text-gray-700"><%=l review.created_at, format: :shortest %></span>
+        <% if Current.user.employee? %>
+          <%= button_to property_review_path(property, review), method: :delete, form_class: "inline", class: "inline-flex items-center justify-center gap-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-5 py-2 bg-[#FF6C1E] text-white rounded-xl px-3 hover:bg-orange-600" do %>
+            <%= render 'svgs/trashcan' %>
+          <% end %>
+        <% end %>
         <p><%= review.message %></p>
       </div>
     <% end %>
