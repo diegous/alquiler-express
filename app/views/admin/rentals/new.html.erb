@@ -9,15 +9,9 @@
     <%= form_with model: @rental, url: admin_rentals_path do |form| %>
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <%= form.label :property_id, 'Propiedad', class: 'block text-sm font-medium mb-1' %>
-          <%= form.collection_select(
-                :property_id,
-                Property.all,
-                :id,
-                :name,
-                { include_blank: true },
-                class: 'w-full p-2 rounded border border-gray-300 cuchuflito'
-              ) %>
+          <label class="block text-sm font-medium mb-1">Propiedad</label>
+          <p class="font-bold h-9"><%= @rental.property.name %></p>
+          <%= form.hidden_field :property_id, value: @rental.property_id %>
         </div>
         <div>
           <%= form.label :owner_id, 'Cliente', class: 'block text-sm font-medium mb-1' %>
