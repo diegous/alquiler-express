@@ -11,7 +11,7 @@ class AverageOccupationReport
       max_occupation_possible = guest_capacity * rentals.size
       occupation_percentage = guests_count / max_occupation_possible.to_f * 100
 
-      {guest_capacity:, occupation_percentage:}
+      { guest_capacity:, occupation_percentage: }
     end
   end
 end

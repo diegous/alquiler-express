@@ -21,7 +21,7 @@ class Payment < ApplicationRecord
     less_than_or_equal_to: 12
   }
   validates :card_exp_year, numericality: {
-    greater_than_or_equal_to: Date.current.year,
+    greater_than_or_equal_to: Date.current.year
   }
   validate :valid_card_expiration
   validate :valid_card_number
