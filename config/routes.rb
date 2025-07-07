@@ -58,6 +58,8 @@ Rails.application.routes.draw do
         patch :accept
         get :cancel_form
         patch :cancel
+        get :confirm_start
+        patch :start
       end
     end
     resources :employees do
