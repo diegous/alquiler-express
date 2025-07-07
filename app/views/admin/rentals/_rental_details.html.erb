@@ -1,6 +1,13 @@
 <h2 class="text-3xl font-bold text-[#144B7F] mb-5">
   Detalles de reserva #<%= rental.id %>
 </h2>
+
+<p class="text-[#666]">
+  Estado:
+  <span class="font-medium text-[#333]">
+    <%= enum_t(rental.status, key: :rental).humanize %>
+  </span>
+</p>
 <p class="font-medium text-[#333]">
   <%= link_to rental.property.name, living_property_path(rental.property) %>
 </p>
