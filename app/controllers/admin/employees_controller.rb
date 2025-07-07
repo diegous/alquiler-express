@@ -13,6 +13,10 @@ class Admin::EmployeesController < ApplicationController
     end
   end
 
+  def show
+    @employee = Employee.find(params[:id])
+  end
+
   def new
     @employee = Employee.new
   end
