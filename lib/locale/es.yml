@@ -13,7 +13,7 @@ es:
       long: "%F"
       detailed: "%A, %d de %B de %Y"
       day: "%A %e de %B"
-      short: "%d de %b"
+      short: "%d de %B"
   datetime:
     prompts:
       second: Segundo
