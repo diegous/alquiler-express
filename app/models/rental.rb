@@ -8,6 +8,7 @@ class Rental < ApplicationRecord
 
   validate :no_colliding_rentals
   validate :valid_start_and_end, on: :create
+  validate :no_other_rentals_for_owner, on: :create
 
   before_create :assign_total_cost
 
@@ -134,5 +135,30 @@ class Rental < ApplicationRecord
     if self.start <= Time.current
       errors.add(:start, "debe ser posterior a hoy")
     end
+  end
+
+  def no_other_rentals_for_owner
+    colliding_rentals = owner
+      .owned_rentals
+      .where(status: %i[dates_selected requested accepted paid started])
+      .where(property_id: Property.where(type: property.type))
+      .where("end > :current_start AND start < :current_end",
+             current_start: self.start,
+             current_end: self.end)
+
+    return unless colliding_rentals.exists?
+
+    rental_start = self.start
+    rental_end = self.end
+
+    if !property.is_a?(Garage)
+      rental_start = rental_start.to_date
+      rental_end = rental_end.to_date
+    end
+
+    start_string = I18n.l(rental_start, format: :short)
+    end_string = I18n.l(rental_end, format: :short)
+
+    errors.add(:base, "Ya tiene una reserva hecha entre #{start_string} y #{end_string}")
   end
 end
