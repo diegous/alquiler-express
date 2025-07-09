@@ -9,6 +9,7 @@ class Rental < ApplicationRecord
   validate :no_colliding_rentals
   validate :valid_start_and_end, on: :create
   validate :no_other_rentals_for_owner, on: :create
+  validate :valid_duration, on: :create
 
   before_create :assign_total_cost
 
@@ -160,5 +161,11 @@ class Rental < ApplicationRecord
     end_string = I18n.l(rental_end, format: :short)
 
     errors.add(:base, "Ya tiene una reserva hecha entre #{start_string} y #{end_string}")
+  end
+
+  def valid_duration
+    # A rental cannot last more than 30 days
+    return if (self.end - self.start) / 1.day < 30
+    errors.add(:end, "no puede durar más de 30 días")
   end
 end
