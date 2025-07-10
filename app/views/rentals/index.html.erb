@@ -10,7 +10,11 @@
         <%= image_tag rails_blob_path(rental.property.pictures.first, disposition: "attachment"), class: 'w-24 h-24 object-cover rounded-xl' %>
 
         <div class="flex-1 space-y-1">
-          <h2 class="text-xl font-semibold text-[#144B7F]"><%= rental.property.name %> (#<%= rental.id %>)</h2>
+          <div class="flex gap-2">
+            <h2 class="text-xl font-semibold text-[#144B7F]"><%= rental.property.name %> (#<%= rental.id %>)</h2>
+            <span class="text-sm bg-[#FFD4BA] text-[#333] px-3 py-1 rounded-full"><%=t rental.property.type %></span>
+          </div>
+
           <p class="text-sm text-[#666]">
             Checkin:
             <span class="text-black font-medium">
