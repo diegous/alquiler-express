@@ -1,5 +1,5 @@
 guest_without_rentals:
-  email_address: guest@example.com
+  email_address: sad_guest@example.com
   type: Guest
   last_name: Pablo
   first_name: Segundo
