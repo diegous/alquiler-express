@@ -1,0 +1,8 @@
+guest_for_beach_house_paid_rental:
+  email_address: guest@example.com
+  type: Guest
+  last_name: Tado
+  first_name: Invi
+  dni: 40123456
+  dob: <%= Time.zone.parse("2000-01-01") %>
+  rentals: [paid_rental]
