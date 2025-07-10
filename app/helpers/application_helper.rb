@@ -12,7 +12,8 @@ module ApplicationHelper
     when "warning"
       "bg-yellow-50 border-yellow-400 text-yellow-700"
     when "notice"
-      "bg-blue-50   border-blue-400   text-blue-700"
+      "bg-green-50  border-green-400  text-green-700"
+      # "bg-blue-50   border-blue-400   text-blue-700"
     else
       "bg-gray-50   border-gray-400   text-gray-700"
     end
