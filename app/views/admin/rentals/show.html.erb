@@ -61,11 +61,9 @@
       <% end %>
 
       <% if @rental.cancellable? %>
-        <%= button_to(
+        <%= link_to(
               "Cancelar reserva",
-              cancel_rental_path(@rental),
-              method: :patch,
-              data: { controller: "confirmation", action: "click->confirmation#alert" },
+              cancel_form_admin_rental_path(@rental),
               class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600") %>
       <% end %>
     </div>
