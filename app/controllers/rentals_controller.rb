@@ -20,7 +20,7 @@ class RentalsController < ApplicationController
     @rental.status = :requested unless @property.is_a?(LivingProperty)
 
     if @rental.save
-      redirect_to rental_path(@rental)
+      redirect_to rental_path(@rental), notice: "La reserva se creó exitosamente"
     else
       render :new
     end
