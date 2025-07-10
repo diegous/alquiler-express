@@ -4,7 +4,9 @@ class Admin::RentalsController < ApplicationController
   def index
     cancel_unpaid_rentals
 
-    @rentals = if params[:requested] == "true"
+    @only_requested = params[:requested] == "true"
+
+    @rentals = if @only_requested
       Rental.requested
     elsif params[:status].present?
       Rental.not_requested.where(status: params[:status])
