@@ -58,9 +58,7 @@ Rails.application.routes.draw do
         patch :accept
         get :cancel_form
         patch :cancel
-        get :confirm_start
         patch :start
-        get :confirm_finish
         patch :finish
       end
     end
