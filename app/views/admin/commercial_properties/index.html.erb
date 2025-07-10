@@ -3,7 +3,7 @@
     <div class="flex flex-row gap-2 bg-white rounded-2xl shadow-md p-4 items-center">
       <%= form.search_field :city, placeholder: 'Ciudad', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm flex-1 px-4 border border-gray-300 rounded-xl', value: params[:city] %>
       <%= form.number_field :min_m2, in: 1.0..100.0, placeholder: 'm2 Minimos', class: 'h-10 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 text-sm w-35 px-4 border border-gray-300 rounded-xl', value: params[:min_m2], step: 0.01 %>
-      
+
       <button type="submit" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600">
         <%= render 'svgs/lupa' %>
         Buscar
@@ -45,12 +45,12 @@
             <td class="px-6 py-4"><%= property.city %></td>
             <td class="px-6 py-4"><%= property.width * property.length %> m²</td>
             <td class="px-6 py-4 flex gap-2">
+              <%= link_to commercial_property_path(property) , class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-blue-500 text-white hover:bg-blue-600" do %>
+                Ver
+              <% end %>
               <%= link_to edit_admin_commercial_property_path(property), class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-blue-500 text-white hover:bg-blue-600" do %>
                 <%= render 'svgs/edit' %>
                 Editar
-              <% end %>
-              <%= link_to commercial_property_path(property) , class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-blue-500 text-white hover:bg-blue-600" do %>
-                Ver
               <% end %>
               <% if property.enabled? %>
                 <%= button_to admin_commercial_property_path(property), method: :delete, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow h-8 rounded-md px-3 text-xs bg-red-500 text-white hover:bg-red-600" do %>
