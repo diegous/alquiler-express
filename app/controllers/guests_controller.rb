@@ -59,7 +59,7 @@ class GuestsController < ApplicationController
 
   def check_max_guests
     if rental.max_users_reached?
-      flash[:error] = "Máxima cantidad de huéspedes alcanzada"
+      flash[:error] = "No se puede agregar huéspedes: máxima cantidad de huéspedes alcanzada"
       redirect_to rental_path(rental)
     end
   end
