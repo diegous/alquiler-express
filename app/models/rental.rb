@@ -161,8 +161,9 @@ class Rental < ApplicationRecord
 
     start_string = I18n.l(rental_start, format: :short)
     end_string = I18n.l(rental_end, format: :short)
+    property_type = I18n.t(Property.last.class.name)
 
-    errors.add(:base, "Ya tiene una reserva hecha entre #{start_string} y #{end_string}")
+    errors.add(:base, "Ya tiene una reserva de #{property_type} hecha entre #{start_string} y #{end_string}")
   end
 
   def valid_duration
