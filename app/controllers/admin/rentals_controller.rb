@@ -26,8 +26,13 @@ class Admin::RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    @rental.status = :accepted
     @rental.accepted_at = Time.current
+
+    @rental.status = if @rental.property.is_a?(LivingProperty)
+      :dates_selected
+    else
+      :accepted
+    end
 
     if @rental.save
       redirect_to admin_rental_path(@rental), flash: { success: "Reserva creada exitosamente" }
