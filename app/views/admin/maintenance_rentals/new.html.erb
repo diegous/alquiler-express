@@ -15,7 +15,7 @@
         </div>
         <div>
           <label class="block text-sm font-medium mb-1">Reservado por</label>
-          <p class="font-bold h-9"><%= Current.user.full_name %></p>
+          <p class="font-bold h-9"><%= Current.user.full_name %> (empleado acutal)</p>
           <%= form.hidden_field :owner_id, value: Current.user.id %>
         </div>
       </div>
