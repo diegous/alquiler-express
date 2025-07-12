@@ -165,7 +165,7 @@ class Rental < ApplicationRecord
 
   def valid_duration
     # A rental cannot last more than 30 days
-    return if (self.end - self.start) / 1.day < 30
+    return if (self.end - self.start) / 1.day <= 30
     errors.add(:end, "no puede durar más de 30 días")
   end
 end
