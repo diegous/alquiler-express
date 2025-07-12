@@ -139,6 +139,8 @@ class Rental < ApplicationRecord
   end
 
   def no_other_rentals_for_owner
+    return if owner.employee?
+
     colliding_rentals = owner
       .owned_rentals
       .where(status: %i[dates_selected requested accepted paid started])
