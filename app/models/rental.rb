@@ -22,7 +22,7 @@ class Rental < ApplicationRecord
     finished: 40,
     canceled: 100,
     maintenance: 120,
-    cancelled_maintenance: 140
+    finished_maintenance: 140
   }
 
   def get_property
@@ -68,7 +68,7 @@ class Rental < ApplicationRecord
   end
 
   def maintenance_related?
-    maintenance? || cancelled_maintenance?
+    maintenance? || finished_maintenance?
   end
 
   private
