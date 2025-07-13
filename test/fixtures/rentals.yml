@@ -125,3 +125,13 @@ hu_118_e4_colliding_rental:
   property: garage_without_roof
   total_cost: 550.84
   accepted_at: <%= Time.zone.parse("2025-01-29 17:00") %>
+
+# HU 27 (cancelar reserva como cliente)
+hu_27_e1_requested_rental:
+  start: <%= Time.zone.parse("2025-09-18") %>
+  end: <%= Time.zone.parse("2025-09-20") %>
+  status: requested
+  owner: user_one_franco_milazzo
+  property: living_property_beach_house
+  total_cost: 600
+  accepted_at: <%= Time.zone.parse("2025-01-29 17:00") %>
