@@ -68,6 +68,8 @@
 
       <div class="mt-6">
         <%= form.submit 'Pagar', class: 'text-sm font-medium transition-colors shadow h-9 bg-[#FF6C1E] text-white hover:bg-[#e55d14] rounded-md px-6' %>
+
+        <%= link_to "Cancelar", @rental, class: "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 rounded-md px-6 text-sm bg-gray-200 text-[#333] hover:bg-gray-300" %>
       </div>
     <% end %>
   </div>
