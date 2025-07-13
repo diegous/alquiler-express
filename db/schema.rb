@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_04_230125) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_13_215631) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -84,6 +84,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_04_230125) do
     t.datetime "updated_at", null: false
     t.datetime "accepted_at"
     t.text "cancel_reason"
+    t.integer "cancelled_by_employee_id"
+    t.index ["cancelled_by_employee_id"], name: "index_rentals_on_cancelled_by_employee_id"
     t.index ["owner_id"], name: "index_rentals_on_owner_id"
     t.index ["property_id"], name: "index_rentals_on_property_id"
   end
@@ -139,6 +141,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_04_230125) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "payments", "rentals"
   add_foreign_key "rentals", "properties"
+  add_foreign_key "rentals", "users", column: "cancelled_by_employee_id"
   add_foreign_key "rentals", "users", column: "owner_id"
   add_foreign_key "rentals_users", "rentals"
   add_foreign_key "rentals_users", "users"

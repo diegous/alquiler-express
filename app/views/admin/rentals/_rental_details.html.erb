@@ -6,6 +6,9 @@
   Estado:
   <span class="font-medium text-[#333]">
     <%= enum_t(rental.status, key: :rental).humanize %>
+    <% if rental.cancelled_by_employee.present? %>
+      (por empleado <%= rental.cancelled_by_employee.full_name %>)
+    <% end %>
   </span>
 </p>
 <p class="font-medium text-[#333]">
