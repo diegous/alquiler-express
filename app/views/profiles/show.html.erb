@@ -13,14 +13,16 @@
 
     <div class="grid grid-cols-1 gap-5">
       <div>
-        <p><strong>Apellido</strong></p>
-        <p class="text-[#666]"><%= @user.last_name %></p>
+        <% if @user.customer? || @user.employee? %>
+          <p><strong>Apellido</strong></p>
+          <p class="text-[#666]"><%= @user.last_name %></p>
 
-        <p class="mt-4"><strong>Nombre</strong></h3>
-        <p class="text-[#666]"><%= @user.first_name %></p>
+          <p class="mt-4"><strong>Nombre</strong></h3>
+          <p class="text-[#666]"><%= @user.first_name %></p>
 
-        <p class="mt-4"><strong>Teléfono</strong></h3>
-        <p class="text-[#666]"><%= @user.phone %></p>
+          <p class="mt-4"><strong>Teléfono</strong></h3>
+          <p class="text-[#666]"><%= @user.phone %></p>
+        <% end %>
 
         <% if @user.customer? %>
           <p class="mt-4"><strong>Fecha de nacimiento</strong></h3>
@@ -33,7 +35,9 @@
         <p class="mt-4"><strong>Email</strong></h3>
         <p class="text-[#666]"><%= @user.email_address %></p>
 
-        <%= link_to "Editar Perfil", edit_profile_path, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600 mt-6" %>
+        <% if @user.customer? || @user.employee? %>
+          <%= link_to "Editar Perfil", edit_profile_path, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600 mt-6" %>
+        <% end %>
 
         <%= link_to "Editar Contraseña", edit_profile_password_path, class: "inline-flex items-center justify-center gap-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 [&amp;_svg]:size-4 shadow h-10 py-2 bg-[#FF6C1E] text-white rounded-xl px-6 hover:bg-orange-600 mt-6" %>
       </div>
