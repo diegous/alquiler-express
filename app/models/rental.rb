@@ -3,7 +3,7 @@ class Rental < ApplicationRecord
   belongs_to :property
   has_and_belongs_to_many :users
   has_one :payment
-  belongs_to :cancelled_by_employee, class_name: User.name
+  belongs_to :cancelled_by_employee, class_name: User.name, optional: true
 
   validates :owner_id, :property_id, :start, :end, :status, :total_cost, presence: true
 
