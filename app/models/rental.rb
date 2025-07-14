@@ -106,7 +106,7 @@ class Rental < ApplicationRecord
 
     rentals = property
       .rentals
-      .where(status: %i[accepted paid started])
+      .where(status: %i[accepted paid started maintenance])
       .where.not(id: id)
       .where "end > :current_start AND start < :current_end",
              current_start: self.start,
