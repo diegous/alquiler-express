@@ -88,7 +88,7 @@ finished_rental:
 
 appartment_in_city_center_rental1:
   start: <%= Time.zone.parse("2025-02-07") %>
-  end: <%= Time.zone.parse("2026-02-10") %>
+  end: <%= Time.zone.parse("2025-02-10") %>
   status: finished
   owner: user_four_emilio_ravenna
   property: living_property_in_city_center
@@ -98,7 +98,7 @@ appartment_in_city_center_rental1:
 
 appartment_in_city_center_rental2:
   start: <%= Time.zone.parse("2025-02-14") %>
-  end: <%= Time.zone.parse("2026-02-17") %>
+  end: <%= Time.zone.parse("2025-02-17") %>
   status: finished
   owner: user_four_emilio_ravenna
   property: living_property_in_city_center
