@@ -50,4 +50,9 @@
   </span>
 </p>
 
-<p class="text-lg font-semibold text-[#FF6C1E]">Total: <%= number_to_currency rental.total_cost %></p>
+<p class="text-lg font-semibold text-[#FF6C1E]">
+  Total: <%= number_to_currency rental.total_cost %>
+  <% if rental.canceled? && rental.cancelled_by_employee.present? %>
+    (reintegrado)
+  <% end %>
+</p>
