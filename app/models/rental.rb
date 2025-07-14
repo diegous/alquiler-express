@@ -30,9 +30,14 @@ class Rental < ApplicationRecord
     self.property
   end
 
+  def must_have_guests?
+    return false if maintenance_related?
+    property.must_have_guests?
+  end
+
   def needs_guest?
     return false unless property.is_a?(LivingProperty)
-    return false if maintenance?
+    return false if maintenance_related?
     users.count < property.guest_capacity
   end
 
