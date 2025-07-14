@@ -23,7 +23,7 @@ class Admin::MaintenanceRentalsController < ApplicationController
 
     if @rental.cancellable?
       @rental.finished_maintenance!
-      redirect_to admin_rental_path(@rental), flash: { success: "Mantenimiento cancelado" }
+      redirect_to admin_rental_path(@rental), flash: { success: "Mantenimiento Finalizado" }
     else
       redirect_to admin_rental_path(@rental), flash: { error: "Hubo un error" }
     end
